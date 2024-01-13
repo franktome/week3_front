@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Test = () => {
@@ -12,7 +13,7 @@ const Test = () => {
         // setData(response.data);
 
         // 임시로 데이터를 설정 (시뮬레이션용)
-        setData([1, 2, 3, 4, 5]);
+        setData([1, 2, 3, 4]);
       } catch (error) {
         console.error('Error fetching data', error);
       }

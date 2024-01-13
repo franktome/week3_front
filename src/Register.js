@@ -1,7 +1,9 @@
 import './Register.css';
-import {HmacSHA256, SHA156} from 'crypto-js';
+import {HmacSHA256} from 'crypto-js';
 import { useState } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router,Routes,Route, Link ,useNavigate } from 'react-router-dom';
+import Login from './Login';
 
 function Register(){
     const [username, setUsername] = useState('');
@@ -11,6 +13,7 @@ function Register(){
     const [check_password, setCheckPassword] = useState('');
     const [isDuplicated, setIsDuplicated] = useState(false);
     const [isPasswordSame, setIsPasswordSame] = useState(true);
+    const navigate = useNavigate();
     
     const setUsernameText = (e) => {
         setUsername(e.target.value)
@@ -49,6 +52,9 @@ function Register(){
         if(user_id === ""){
             alert("아이디를 입력해주세요.");
             return;
+        } else if(user_id.length > 15){
+            alert("아이디 길이는 15자이하로 설정해주세요.");
+            return;
         }
         try{
             const response = await axios.get("http://172.10.7.46:80/duplicate", 
@@ -74,23 +80,33 @@ function Register(){
         if(!isPasswordSame){
             alert("비밀번호가 일치하지 않습니다.")
             return;
-        } else if(password.length <= 5){
-            alert("비밀번호는 6자리 이상으로 설정해주세요.");
+        } else if(password.length <= 5 || password.length > 30){
+            alert("비밀번호는 6자리 이상 30자리 이하로 설정해주세요.");
             return;
-        } 
+        } else if(username.length <=0 || username.length > 10){
+            alert("이름은 1이상 10자이하만 가능합니다.");
+            return;
+        } else if(belong.length <= 0 || belong.length > 25){
+            alert("소속은 1이상 25자이하만 가능합니다.");
+            return;
+        }
         try{
             const key = "jongmohyeonseo";
-            const hash_password = HmacSHA256(password,key).toString() ;
+            const hash_password = HmacSHA256(password,key).toString();
+            const hash_password_check = HmacSHA256(check_password, key).toString();
             const response = await axios.post("http://172.10.7.46:80/register", 
             {
                 'user_id' : user_id,
                 'password' : hash_password,
+                'password_check' : hash_password_check,
                 'name' : username,
                 'belong' : belong,
             });
-            alert("새 계정이 등록되었습니다.");
             if (response.data === "True") {
                 alert("새 계정이 등록되었습니다.");
+                navigate("../Login",{replace: false});
+            } else{
+                alert("계정 등록에 실패했습니다.");
             }
         } 
         catch(error){

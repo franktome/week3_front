@@ -1,0 +1,43 @@
+.profile_wrapper {
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #ddd;
+}
+
+.user_info_wrapper {
+    align-items: center;
+}
+
+p {
+    /* 수평 중앙 정렬하기 */
+    text-align: center;
+}
+
+.todo_wrapper {
+
+}
+
+.schedule_wrapper {
+    display: grid;
+    margin: 20px;
+    grid-template-columns: repeat(7, minmax(10px, 1fr));
+    grid-template-rows: repeat(24, minmax(10px, 1fr));
+    gap: 0px;
+    position:
+}
+
+.grid_item {
+    background-color: #D9D9D9;
+    padding-left: 3px;
+    padding-right:3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    border: 1px solid #FFF;
+}
+
+.preview_box {
+    background-color: rgba(76, 175, 80, 0.5); /* 투명한 초록색 */
+    border: 1px solid #4CAF50;
+    position : absolute;
+}
