@@ -12,22 +12,25 @@ const Dashboard = () => {
   const user_id = state?.user_id;
 
   const [userData, setUserData] = useState({});
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://172.10.7.46:80/profile", {
-          params: {
-            'user_id': user_id,
-          },
-        });
-        setUserData(response.data);
-        //console.log(response.data);
-      } catch (error) {
-        console.error('Error fetching data', error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://172.10.7.46:80/profile", {
+        params: {
+          'user_id': user_id,
+        },
+      });
+      setUserData(response.data);
+      //console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching data', error);
+    }
+  };
 
+  const onProjectCreated = () => {
+    fetchData();
+  }
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -35,7 +38,7 @@ const Dashboard = () => {
     <div style={{ display: 'flex', height: '100vh' }}>
       {/* 프로젝트 목록 */}
       <div style={{ flex: '3', padding: '20px', borderRight: '1px solid #ddd' }}>
-        <Projects userData ={userData}/>
+        <Projects userData ={userData} onProjectCreated = {onProjectCreated}/>
       </div>
       
       {/* 프로필 영역 */}

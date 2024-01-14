@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AddProjectPopup from './AddProjectPopup';
 import axios from 'axios';
 
-const Projects = ({userData}) => {
+const Projects = ({userData, onProjectCreated}) => {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const navigate = useNavigate();
   const handleAddProject = async({projectName, description, participants}) => {
@@ -21,6 +21,7 @@ const Projects = ({userData}) => {
     console.log(response.data);
     if(response.data === 'True'){
       alert("프로젝트 생성 완료");
+      onProjectCreated();
     } else{
       alert("프로젝트 생성에 실패했습니다.");
     }
