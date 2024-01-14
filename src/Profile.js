@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Profile.css';
 
-function Profile() {
+function Profile({userData}) {
   const [isDragging, setIsDragging] = useState(false);
   const [gridItems, setGridItems] = useState(Array(168).fill(0));
   const [sx, setsx] = useState(0)
@@ -70,7 +70,7 @@ function Profile() {
   return (
     <div className='profile_wrapper'>
       <div className='user_info_wrapper'>
-        <p>박종모님</p>
+        <p>{userData.user_name}님</p>
       </div>
       <div className='todo_wrapper'></div>
       <div className='date_wrapper'></div>
@@ -79,6 +79,7 @@ function Profile() {
           <div
             key={index}
             className='grid_item'
+            draggable="false"
             style={{ backgroundColor: item === 1 ? '#4CAF50' : '#D9D9D9' }}
             onMouseDown={() => handleMouseDown(index)}
             onMouseUp={() => handleMouseUp(index)}
