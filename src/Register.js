@@ -2,8 +2,7 @@ import './Register.css';
 import {HmacSHA256} from 'crypto-js';
 import { useState } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router,Routes,Route, Link ,useNavigate } from 'react-router-dom';
-import Login from './Login';
+import { useNavigate } from 'react-router-dom';
 
 function Register(){
     const [username, setUsername] = useState('');
@@ -16,20 +15,20 @@ function Register(){
     const navigate = useNavigate();
     
     const setUsernameText = (e) => {
-        setUsername(e.target.value)
+        setUsername(e.target.value.slice(0,10));
     }
 
     const setBelongText = (e) => {
-        setBelong(e.target.value)
+        setBelong(e.target.value.slice(0,25));
     }
 
     const setId = (e) => {
-    setUser_id(e.target.value);
+    setUser_id(e.target.value.slice(0,15));
     setIsDuplicated(false); // 입력이 변경되면 중복 상태 초기화
     };
 
     const checkPassword1 = (e) => {
-        const newPassword = e.target.value;
+        const newPassword = e.target.value.slice(0,30);
         setPassword(newPassword);
         if(newPassword === check_password){
             setIsPasswordSame(true);

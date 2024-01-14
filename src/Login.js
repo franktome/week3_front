@@ -1,8 +1,7 @@
 import React, { useState} from 'react';
 import axios from 'axios';
 import { HmacSHA256 } from 'crypto-js';
-import Dashboard from './Dashboard';
-import { BrowserRouter as Router,Routes,Route, Link ,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
@@ -27,12 +26,12 @@ const Login = () => {
         });
             if (response.data === "True") {
                 // 로그인 성공 처리
-                alert(username + '로그인 성공!');
+                alert(username + ' 로그인 성공!');
                 // 다른 처리 로직을 추가하십시오.
-                navigate('../Dashboard',{ replace: true});
+                navigate('../Dashboard',{replace: true, state:{user_id: username}});
               } else {
                 // 로그인 실패 처리
-                alert('등록된 회원정보가 없습니다. 회원가입을 해주세요');
+                alert('로그인 실패!');
                 // 다른 처리 로직을 추가하십시오.
               }
             // const responseData = response.data;
