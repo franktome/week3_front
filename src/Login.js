@@ -45,7 +45,7 @@ const Login = () => {
   };
 
   const handleSignUp = () => {
-    alert('회원가입 페이지로 이동합니다.');
+    //alert('회원가입 페이지로 이동합니다.');
     // 여기에 회원가입 페이지로 이동하는 로직을 추가하세요.
     navigate("../Register",{replace: false});
     

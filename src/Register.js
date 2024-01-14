@@ -76,19 +76,20 @@ function Register(){
     }
 
     const submitRegister = async() =>{
-        if(!isPasswordSame){
+        if(username.length <=0 || username.length > 10){
+            alert("이름은 1자에서 10자이하만 가능합니다.");
+            return;
+        } else if(belong.length <= 0 || belong.length > 25){
+            alert("소속은 1자이상 25자이하만 가능합니다.");
+            return;
+        }
+        else if(!isPasswordSame){
             alert("비밀번호가 일치하지 않습니다.")
             return;
         } else if(password.length <= 5 || password.length > 30){
             alert("비밀번호는 6자리 이상 30자리 이하로 설정해주세요.");
             return;
-        } else if(username.length <=0 || username.length > 10){
-            alert("이름은 1이상 10자이하만 가능합니다.");
-            return;
-        } else if(belong.length <= 0 || belong.length > 25){
-            alert("소속은 1이상 25자이하만 가능합니다.");
-            return;
-        }
+        } 
         try{
             const key = "jongmohyeonseo";
             const hash_password = HmacSHA256(password,key).toString();

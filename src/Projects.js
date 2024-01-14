@@ -48,9 +48,6 @@ const Projects = ({userData, onProjectCreated}) => {
     </div>
 
     <hr style={{ marginBottom: '16px' }} />
-
-      <h2>프로젝트 목록</h2>
-
       {userData.project && userData.project.length > 0 ? (
         <ul style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', listStyleType: 'none' }}>
           {userData.project.map((project, index) => (
