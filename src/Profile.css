@@ -23,7 +23,7 @@ p {
     grid-template-columns: repeat(7, minmax(10px, 1fr));
     grid-template-rows: repeat(24, minmax(10px, 1fr));
     gap: 0px;
-    position:
+    border: 1px solid #000;
 }
 
 .grid_item {
@@ -36,8 +36,7 @@ p {
     border: 1px solid #FFF;
 }
 
-.preview_box {
+.rectangle {
     background-color: rgba(76, 175, 80, 0.5); /* 투명한 초록색 */
     border: 1px solid #4CAF50;
-    position : absolute;
 }
