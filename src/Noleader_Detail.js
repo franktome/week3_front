@@ -135,7 +135,7 @@ const Noleader_Detail = ({userData, index}) => {
           style={{ background: '#fff', flex: '1', marginRight: '0px', padding: '8px',border: '1px solid #fff',fontWeight: 'bold', fontSize: '35px', }}
           disabled
         />
-        <button onClick={() => window.history.back()} style={{ marginLeft: '8px', padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#2196F3', color: '#fff', border: '0px solid #fff' }}>뒤로가기</button>
+        <button onClick={() => window.history.back()} style={{ marginLeft: '8px', padding: '8px', fontSize: '14px', cursor: 'pointer',  color: 'black', border: '0px solid #fff' }}>뒤로가기</button>
       </div>
       <hr className="divider" />
 
