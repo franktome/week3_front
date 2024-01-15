@@ -34,7 +34,6 @@ const Login = () => {
                 alert('로그인 실패!');
                 // 다른 처리 로직을 추가하십시오.
               }
-            // const responseData = response.data;
             
         } catch(error) {
             //console.error("Login" + error);

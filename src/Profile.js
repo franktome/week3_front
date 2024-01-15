@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Profile.css';
 
-function Profile({userData}) {
+function Profile({userData, callback}) {
   const [isDragging, setIsDragging] = useState(false);
   const [gridItems, setGridItems] = useState(Array(168).fill(0));
   const [sx, setsx] = useState(0)

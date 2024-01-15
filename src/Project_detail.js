@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Project_detail.css'; // Stylesheet
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
-const ProjectDetail = () => {
-  const location = useLocation();
-  const { state } = location;
-  const userData = state?.user_data;
-  const index = state?.index;
+const ProjectDetail = ({userData, index}) => {
+  // const location = useLocation();
+  // const { state } = location;
+  // const userData = state?.user_data;
+  // const index = state?.index;
+  const project_id = userData.project[index].project_id;
+  const leader = userData.project[index].project_leader;
 
   // State variables
   const { project_name } = useParams();
-//   const [projectName, setProjectName] = useState('project1');
-//   const [projectParticipation, setProjectParticipation] = useState('윤현서, 박종모');
-//   const [projectDescription, setProjectDescription] = useState('몰입 캠프 3주차 프로젝트입니다.');
-console.log(userData)
   const [projectName, setProjectName] = useState(userData.project[index].project_name);
   const [projectParticipation, setProjectParticipation] = useState(userData.project[index].team.join(","));
   const [projectDescription, setProjectDescription] = useState(userData.project[index].project_description);
@@ -33,7 +32,7 @@ console.log(userData)
     if (newTodo.trim() !== '') {
       setTodos([...todos, { text: newTodo, isChecked: false }]);
       setNewTodo(''); // Reset input
-    }
+    };
   };
 
   // Function to delete To-do
@@ -48,6 +47,7 @@ console.log(userData)
     const updatedTodos = [...todos];
     updatedTodos[index].isChecked = !updatedTodos[index].isChecked;
     setTodos(updatedTodos);
+    console.log(todos);
   };
 
   // Function to add new Appointment
@@ -87,6 +87,45 @@ console.log(userData)
     setProjectParticipation(participantsArray.join(', '));
   };
 
+  // check if there is user in database
+  const handleCheckUser = async() => {
+    const response = await axios.get("http://172.10.7.46:80/user", {params: { 'user_id' :newParticipant}});
+    if(response.data === "True"){
+      addParticipant();
+    } else {
+      alert("해당 아이디를 가진 유저가 존재하지 않습니다.");
+    }
+  }
+
+  const handleSaveProjectDetail = async () => {
+    // Check if userData.user_id is equal to userData.project[index].project_leader
+    if (userData.user_id === leader) {
+      // Assuming project_detail is an object containing project details
+      const projectDetailData = {user_id: userData.user_id,
+        project_id: project_id,
+        project_name: projectName,
+        description: projectDescription, 
+        participants: projectParticipation, 
+        todo: todos, 
+        appointment: appointments,  
+        };
+
+      try {
+        // Send the project_detail data to the server
+        const response = await axios.post("http://172.10.7.46:80/alert_project", projectDetailData);
+
+        // Handle the response from the server if needed
+        console.log(response.data);
+      } catch (error) {
+        // Handle errors, if any
+        console.error('Error saving project detail:', error);
+      }
+    } else {
+      // If userData.user_id is not equal to userData.project[index].project_leader
+      alert('You do not have permission to save the project detail.');
+    }
+  };
+
   // JSX structure
   return (
     <div className="project-detail-container" style={{ textAlign: 'left' }}>
@@ -99,7 +138,7 @@ console.log(userData)
           className="project-input"
           style={{ background: '#fff', flex: '1', marginRight: '0px', padding: '8px',border: '1px solid #fff',fontWeight: 'bold', fontSize: '30px', }}
         />
-        <button style={{ padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#4CAF50', color: '#fff', border: '0px solid #fff', marginLeft: '8px' }}>저장</button>
+        <button onClick={handleSaveProjectDetail} style={{ padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#4CAF50', color: '#fff', border: '0px solid #fff', marginLeft: '8px' }}>저장</button>
         <button onClick={() => window.history.back()} style={{ marginLeft: '8px', padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#2196F3', color: '#fff', border: '0px solid #fff' }}>뒤로가기</button>
       </div>
       <hr className="divider" />
@@ -135,7 +174,7 @@ console.log(userData)
             onChange={(e) => setNewParticipant(e.target.value)}
             className="participation-input"
             />
-            <button onClick={addParticipant} className="add-button">+</button>
+            <button onClick={handleCheckUser} className="add-button">+</button>
         </div>
       </div>
 
@@ -216,7 +255,7 @@ console.log(userData)
             </li>
           ))}
         </ul>
-        {/* New To-do Input and Button */}
+        {/* New Appointment Input and Button */}
         <div style={{ display: 'flex', marginBottom: '8px' }}>
           <input
             type="text"

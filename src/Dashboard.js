@@ -20,7 +20,7 @@ const Dashboard = () => {
         },
       });
       setUserData(response.data);
-      //console.log(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error('Error fetching data', error);
     }
@@ -43,7 +43,7 @@ const Dashboard = () => {
       
       {/* 프로필 영역 */}
       <div style={{ flex: '1', padding: '20px', overflow: 'hidden' }}>
-        <Profile userData = {userData} />
+        <Profile userData = {userData} callback={onProjectCreated} />
       </div>
     </div>
   );
