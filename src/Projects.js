@@ -56,7 +56,7 @@ const Projects = ({ userData, onProjectCreated }) => {
   };
 
   const handlepassusername=(index)=> {
-    navigate('../Dashboard_detail',{replace: false, state:{user_data: userData, index: index}});
+    navigate('../Dashboard_detail',{replace: false, state:{userData: userData, index: index}});
   }
 
   return (

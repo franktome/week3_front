@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 const Dashboard_detail = () => {
   const location = useLocation();
   const { state } = location;
-  const {userData, index, onProjectCreated} = state;
+  const {userData, index} = state;
   console.log(userData)
 
   // const [userData, setUserData] = useState({});
@@ -38,12 +38,12 @@ const Dashboard_detail = () => {
     <div style={{ display: 'flex', height: '100vh' }}>
       {/* 프로젝트 목록 */}
       <div style={{ flex: '3', padding: '20px', borderRight: '1px solid #ddd' }}>
-        <Project_detail userData ={userData} callback = {onProjectCreated}/>
+        <Project_detail userData ={userData} index  = {index}/>
       </div>
       
       {/* 프로필 영역 */}
       <div style={{ flex: '1', padding: '20px', overflow: 'hidden' }}>
-        <Profile userData = {userData} index  = {index} callback = {onProjectCreated} />
+        <Profile userData = {userData} />
       </div>
     </div>
   );

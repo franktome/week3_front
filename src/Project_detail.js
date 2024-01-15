@@ -9,6 +9,7 @@ const ProjectDetail = ({userData, index}) => {
   // const { state } = location;
   // const userData = state?.user_data;
   // const index = state?.index;
+  console.log("ProjectDetail :"+userData)
   const project_id = userData.project[index].project_id;
   const leader = userData.project[index].project_leader;
 
