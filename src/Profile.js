@@ -1,19 +1,68 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Resizable, ResizableBox } from 'react-resizable';
 import './Profile.css';
 
 function Profile({userData}) {
   
-  //const [isDragging, setIsDragging] = useState(false);
   const [gridItems, setGridItems] = useState(Array(168).fill(0));
-  //const [sx, setsx] = useState(0)
-  //const [sy, setsy] = useState(0)
-  //const [ex, setex] = useState(0)
-  //const [ey, setey] = useState(0)
-  //const [state, setstate] = useState(1)
-
   const gridRef = useRef(null);
   const [gridPosition, setGridPosition] = useState({left:0, top:0, right:0, bottom:0, w:0, h:0});
+  const [planname, setPlanName] = useState('');
+  const [plantime, setPlanTime] = useState(0);
+  const [blockList, setBlockList] = useState([]);
+  const [trashHover, setTrashHover] = useState(false);
+
+  const limitPlanTime = (e) =>{
+  const value = parseInt(e.target.value);
+  if (isNaN(value) || value < 0) {
+    setPlanTime(0);
+  } else if (value > 24) {
+    setPlanTime(24);
+  } else {
+    setPlanTime(value);
+  }
+  }
+
+
+  const get_block = (block, index) => {
+    return <div
+      id={index}
+      key = {index}
+      className = "rectangle"
+      onDragStart={(e)=>drag(e,index)}
+      draggable = 'true'
+      style = {{
+        position : 'absolute',
+        gridColumn: block.left_index + 1,
+        gridColumnEnd : block.index_right,
+        gridRow : block.top_index + 1,
+        gridRowEnd : block.bottom_index.bottom_index,
+        width : gridPosition.w,
+        height : gridPosition.h * block.plan_time
+      }}
+      >
+      {block.plan_name}
+    </div>
+  }
+  const initialize_block = () => {
+    return blockList.map((block, index)=>get_block(block, index))
+  }
+
+  const createBlock = () => {
+    if(plantime <= 0){
+      alert("일정의 시간을 입력해주세요.");
+      return;
+    }
+    const new_block = {
+      left_index: 0,
+      top_index: 0,
+      right_index: 1,
+      bottom_index: plantime,
+      plan_name: planname,
+      plan_time: plantime
+    }
+    const updatedblockList = [...blockList, new_block];
+    setBlockList(updatedblockList);
+  }
 
   useEffect(() => {
     const updateGridPosition = () => {
@@ -36,24 +85,19 @@ function Profile({userData}) {
     };
   }, []);
 
+
   const [draggedElement, setDraggedElement] = useState(null);
-  const [offset, setOffset] = useState({left:0, top:0, right:0, bottom:0});
-  const [index, setIndex] = useState({left_index:0, top_index:0});
-  const [rectangleSize, setRectangleSize] = useState({ width: 50, height: 50 });
-
-
+  const [offset, setOffset] = useState({left:0, top:0});
 
   const allowDrop = (event) => {
     event.preventDefault();
   };
 
-  const drag = (event) => {
-    setDraggedElement(event.target.id);
+  const drag = (event, index) => {
+    setDraggedElement({id : event.target.id, index : index});
     setOffset({
       left: event.clientX - event.target.getBoundingClientRect().left,
       top: event.clientY - event.target.getBoundingClientRect().top,
-      right:  event.target.getBoundingClientRect().right- event.clientX,
-      bottom : event.target.getBoundingClientRect().bottom - event.clientY
     });
   };
 
@@ -63,57 +107,52 @@ function Profile({userData}) {
 
     const left = event.clientX - offset.left;
     const top = event.clientY - offset.top;
-    const right = event.clientX + offset.right;
-    const bottom = event.clientY + offset.bottom;
     
     const index_left = Math.round((left -gridPosition.left) / gridPosition.w);
     const index_top = Math.round((top - gridPosition.top) / gridPosition.h);
-    const index_right = (right - gridPosition.left) / gridPosition.w;
-    const index_bottom = (bottom - gridPosition.top) / gridPosition.h;
 
-    setIndex({left_index : index_left, top_index : index_top});
+    if (trashHover) {
+      removeBlock(draggedElement.index);
+    } else {
+      updateDraggedBlock(draggedElement.index, { left_index: index_left, top_index: index_top });
+    }
     setDraggedElement(null);
+    setTrashHover(false);
   };
 
-  const resize = (event, { size }) => {
-    setRectangleSize(size);
-  };
-  /*
-  const handleMouseDown = (index) => {
-    setIsDragging(true);
-    setstate(1 - gridItems[index]);
-    setsx(index % 7);
-    setsy((index - (index % 7)) / 7);
-    setex(index % 7);
-    setey((index - (index % 7)) / 7);
-  };
-  
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    updateSelectedArea();
-  };
-  
-  const handleMouseEnter = (index) => {
-    if (isDragging) {
-      setex(index % 7);
-      setey((index - (index % 7)) / 7);
+  const updateDraggedBlock = (index, info) => {
+    // 격자 밖으로 나가는지 확인
+    const time_len = blockList[index].plan_time;
+    if(info.left_index > 6 || info.left_index < 0 || info.top_index < 0 || info.top_index + time_len > 24){
+      return;
     }
+    const updatedblockList = [...blockList];
+    updatedblockList[index].left_index = info.left_index;
+    updatedblockList[index].top_index = info.top_index;
+    updatedblockList[index].right_index = info.left_index+1;
+    updatedblockList[index].bottom_index = info.top_index + time_len;
+    setBlockList(updatedblockList);
   };
-  
 
-  const updateSelectedArea = () => {
-    const updatedGridItems = [...gridItems];
-  
-    for (let i = Math.min(sy, ey); i <= Math.max(sy, ey); i++) {
-      for (let j = Math.min(sx, ex); j <= Math.max(sx, ex); j++) {
-        const index = i * 7 + j;
-        updatedGridItems[index] = state;
-      }
-    }
-  
-    setGridItems(updatedGridItems);
+  const dragOverTrash = (event) => {
+    event.preventDefault();
+    setTrashHover(true);
   };
-  */
+
+  const dragLeaveTrash = () => {
+    setTrashHover(false);
+  };
+
+  const removeBlock = (index) => {
+    const updatedblockList = [...blockList];
+    updatedblockList.splice(index, 1);
+    setBlockList(updatedblockList);
+  }
+
+  // 스케쥴 정보를 서버로 전달
+  const saveScheduleHandler = () => {
+    
+  };
 
   return (
     <div className='profile_wrapper'>
@@ -121,37 +160,31 @@ function Profile({userData}) {
         <p>{userData.user_name}님</p>
       </div>
       <div className='todo_wrapper'></div>
-      <div className='date_wrapper'></div>
-      <div ref={gridRef} className='schedule_wrapper' onDrop={drop} onDragOver={allowDrop}>
-        {gridItems.map((item, index) => (
-          <div
-            key={index}
-            className='grid_item'
-            draggable="false"
-            style={{ backgroundColor: item === 1 ? '#4CAF50' : '#D9D9D9' }}
-            //onMouseDown={() => handleMouseDown(index)}
-            //onMouseUp={() => handleMouseUp(index)}
-            //onMouseEnter={() => handleMouseEnter(index)}
-          ></div>
-        ))}
+
+      <div className='schedule_manager_wrapper'>
+        <div className='date_wrapper'></div> 
+        <div ref={gridRef} className='schedule_wrapper' onDrop={drop} onDragOver={allowDrop}>
+          {gridItems.map((item, index) => (
+            <div
+              key={index}
+              className='grid_item'
+              draggable="false"
+              style={{ backgroundColor: item === 1 ? '#4CAF50' : '#D9D9D9' }}
+            ></div>
+          ))}
+
+          {initialize_block()}
+        
+        </div>
       </div>
-      <Resizable
-       onResize={resize}
-       axis='y'
-       style={{ 
-       width: rectangleSize.width,
-       height: rectangleSize.height
-      }}>
-      <div  
-      id="rectangle"
-       className="rectangle"
-       onDragStart={drag} draggable = 'true' style={{ position: 'absolute',
-       left:gridPosition.left + index.left_index  * gridPosition.w + 'px', 
-       top: gridPosition.top + index.top_index * gridPosition.h + 'px', 
-       width: '100%', 
-       height: '100%' }}>가</div>
-     </Resizable>
-    
+      <div className="trash" onDrop={drop} onDragOver={dragOverTrash} onDragLeave={dragLeaveTrash}>
+        <div className="create_box_input" >
+          <input type='text' className='plan_name' onChange={(e)=> setPlanName(e.target.value.slice(0,5))} value = {planname}></input>
+          <input type='number' className='plan_len' onChange={(e)=> limitPlanTime(e)} value = {plantime}></input>
+          <button type="button" onClick={createBlock}>+</button>
+        </div>
+        <button className="save_schedule_button" onClick={saveScheduleHandler}>저장</button>
+      </div>
     </div>
 
   );

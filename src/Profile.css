@@ -19,19 +19,19 @@ p {
 
 .schedule_wrapper {
     display: grid;
-    margin: 20px;
-    grid-template-columns: repeat(7, minmax(10px, 1fr));
-    grid-template-rows: repeat(24, minmax(10px, 1fr));
+    width: 70%;
+    margin: auto;
+    grid-template-columns: repeat(7, minmax(20px, 1fr));
+    grid-template-rows: repeat(24, minmax(20px, 1fr));
     gap: 0px;
     border: 1px solid #000;
+    position: relative;
 }
 
 .grid_item {
     background-color: #D9D9D9;
-    padding-left: 3px;
-    padding-right:3px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    width: auto;
+    height: auto;
     text-align: center;
     border: 1px solid #FFF;
 }
