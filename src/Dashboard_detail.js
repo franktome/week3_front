@@ -3,14 +3,12 @@ import Profile from './Profile';
 import Project_detail from './Project_detail';
 import axios from 'axios'; 
 import { useEffect, useState } from 'react';
-
 import { useLocation } from 'react-router-dom';
 
 const Dashboard_detail = () => {
   const location = useLocation();
   const { state } = location;
   const {userData, index} = state;
-  console.log(userData)
 
   // const [userData, setUserData] = useState({});
   // const fetchData = async () => {

@@ -4,7 +4,7 @@ import './Project_detail.css'; // Stylesheet
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-const ProjectDetail = ({userData, index}) => {
+const Noleader_Detail = ({userData, index}) => {
   console.log("ProjectDetail :"+userData)
   const project_id = userData.project[index].project_id;
   const leader = userData.project[index].project_leader;
@@ -134,8 +134,6 @@ const ProjectDetail = ({userData, index}) => {
           className="project-input"
           style={{ background: '#fff', flex: '1', marginRight: '0px', padding: '8px',border: '1px solid #fff',fontWeight: 'bold', fontSize: '30px', }}
         />
-        <button onClick={handleSaveProjectDetail} style={{ padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#4CAF50', color: '#fff', border: '0px solid #fff', marginLeft: '8px' }}>저장</button>
-        <button onClick={() => window.history.back()} style={{ marginLeft: '8px', padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#2196F3', color: '#fff', border: '0px solid #fff' }}>뒤로가기</button>
       </div>
       <hr className="divider" />
 
@@ -158,7 +156,6 @@ const ProjectDetail = ({userData, index}) => {
           {projectParticipation.split(',').map((participant, index) => (
           <li key={index}>
               {participant.trim()} 
-              <button onClick={() => deleteParticipant(index)} style={{ marginLeft: '8px' }}>삭제</button>
           </li>
           ))}
         </ul>
@@ -170,7 +167,6 @@ const ProjectDetail = ({userData, index}) => {
             onChange={(e) => setNewParticipant(e.target.value)}
             className="participation-input"
             />
-            <button onClick={handleCheckUser} className="add-button">+</button>
         </div>
       </div>
 
@@ -194,7 +190,6 @@ const ProjectDetail = ({userData, index}) => {
               >
                 {todo.text}
               </span>
-              <button onClick={() => deleteTodo(index)} style={{ marginLeft: '8px' }}>삭제</button>
             </li>
           ))}
         </ul>
@@ -206,7 +201,6 @@ const ProjectDetail = ({userData, index}) => {
             onChange={(e) => setNewTodo(e.target.value.slice(0,50))}
             className="project-input"
           />
-          <button onClick={addTodo} className="add-button">+</button>
         </div>
       </div>
 
@@ -247,7 +241,6 @@ const ProjectDetail = ({userData, index}) => {
               >
                 {appointment.text}
               </span>
-              <button onClick={() => deleteAppointment(index)} style={{ marginLeft: '8px' }}>삭제</button>
             </li>
           ))}
         </ul>
@@ -259,11 +252,10 @@ const ProjectDetail = ({userData, index}) => {
             onChange={(e) => setNewAppointment(e.target.value.slice(0,50))}
             className="project-input"
           />
-          <button onClick={addAppointments} className="add-button">+</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default ProjectDetail;
+export default Noleader_Detail;

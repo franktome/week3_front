@@ -56,13 +56,22 @@ const Projects = ({ userData, onProjectCreated }) => {
   };
 
   const handlepassusername=(index)=> {
-    navigate('../Dashboard_detail',{replace: false, state:{userData: userData, index: index}});
+    if (userData.user_id === userData.project[index].project_leader){
+      navigate('../Dashboard_detail', {replace: false, state:{userData: userData, index: index}});
+    }
+    else {
+      navigate('../Noleader_Dash', {replace: false, state:{userData: userData, index: index}});
+    }
+    
   }
+
+  // const handlepassusername=(index)=> {
+  //   navigate('../Dashboard_detail', {replace: false, state:{userData: userData, index: index}});
+  // }
 
   return (
     <div>
       <h1 style={{ textAlign: 'center', fontSize: '2em', marginBottom: '16px' }}>나의 프로젝트</h1>
-
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
         <button onClick={togglePopup} style={{ padding: '0.5em', fontSize: '1em' }}>프로젝트 추가하기</button>
         {isPopupOpen && (<AddProjectPopup onClose={togglePopup} onAddProject={handleAddProject} />)}
