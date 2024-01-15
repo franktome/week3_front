@@ -132,26 +132,29 @@ const Noleader_Detail = ({userData, index}) => {
           value={projectName}
           onChange={(e) => setProjectName(e.target.value)}
           className="project-input"
-          style={{ background: '#fff', flex: '1', marginRight: '0px', padding: '8px',border: '1px solid #fff',fontWeight: 'bold', fontSize: '30px', }}
+          style={{ background: '#fff', flex: '1', marginRight: '0px', padding: '8px',border: '1px solid #fff',fontWeight: 'bold', fontSize: '35px', }}
+          disabled
         />
+        <button onClick={() => window.history.back()} style={{ marginLeft: '8px', padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#2196F3', color: '#fff', border: '0px solid #fff' }}>뒤로가기</button>
       </div>
       <hr className="divider" />
 
       {/* Project Description */}
       <div>
-        <p className="label" style={{ textAlign: 'left' }}>프로젝트 설명</p>
+        <p className="label" style={{ textAlign: 'left', fontSize: '20px'  }}>프로젝트 설명</p>
         <input
           type="text"
           value={projectDescription}
           onChange={(e) => setProjectDescription(e.target.value)}
           className="project-input"
           style={{ background: '#fff', flex: '1', marginRight: '0px', padding: '8px',border: '1px solid #fff', fontSize: '15px', }}
+          disabled
         />
       </div>
 
       {/* Project Participation */}
       <div>
-      <p className="label" style={{ textAlign: 'left' }}>참여자들</p>
+      <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>참여자들</p>
         <ul>
           {projectParticipation.split(',').map((participant, index) => (
           <li key={index}>
@@ -166,13 +169,15 @@ const Noleader_Detail = ({userData, index}) => {
             value={newParticipant}
             onChange={(e) => setNewParticipant(e.target.value)}
             className="participation-input"
+            style={{ background: '#fff', border: '1px solid #fff' }}
+            disabled
             />
         </div>
       </div>
 
       {/* To-do List */}
       <div>
-        <p className="label" style={{ textAlign: 'left' }}>To do list</p>
+        <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>To do list</p>
         <ul>
           {todos.map((todo, index) => (
             <li key={index} className="list-item">
@@ -180,6 +185,8 @@ const Noleader_Detail = ({userData, index}) => {
                 type="checkbox"
                 checked={todo.isChecked}
                 onChange={() => toggleTodo(index)}
+                style={{ background: '#fff', border: '1px solid #fff', }}
+                disabled
               />
               <span
                 style={{
@@ -200,13 +207,15 @@ const Noleader_Detail = ({userData, index}) => {
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value.slice(0,50))}
             className="project-input"
+            style={{ background: '#fff', border: '1px solid #fff', }}
+            disabled
           />
         </div>
       </div>
 
       {/* 24*7 Table (Placeholder) */}
       <div>
-        <p className="label" style={{ textAlign: 'left' }}>일정표</p>
+        <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>일정표</p>
         <table className="time-table" border="1">
           <thead>
             <tr>
@@ -223,7 +232,7 @@ const Noleader_Detail = ({userData, index}) => {
 
       {/* Appointments List */}
       <div>
-        <p className="label" style={{ textAlign: 'left' }}>약속잡기</p>
+        <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>약속잡기</p>
         <ul>
           {appointments.map((appointment, index) => (
             <li key={index} className="list-item">
@@ -231,6 +240,8 @@ const Noleader_Detail = ({userData, index}) => {
                 type="checkbox"
                 checked={appointment.isChecked}
                 onChange={() => toggleAppointment(index)}
+                style={{ background: '#fff', border: '1px solid #fff', }}
+                disabled
               />
               <span
                 style={{
@@ -251,6 +262,7 @@ const Noleader_Detail = ({userData, index}) => {
             value={newAppointment}
             onChange={(e) => setNewAppointment(e.target.value.slice(0,50))}
             className="project-input"
+            style={{ background: '#fff', border: '1px solid #fff', }}
           />
         </div>
       </div>

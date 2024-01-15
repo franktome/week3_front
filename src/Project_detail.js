@@ -132,7 +132,7 @@ const ProjectDetail = ({userData, index}) => {
           value={projectName}
           onChange={(e) => setProjectName(e.target.value)}
           className="project-input"
-          style={{ background: '#fff', flex: '1', marginRight: '0px', padding: '8px',border: '1px solid #fff',fontWeight: 'bold', fontSize: '30px', }}
+          style={{ background: '#fff', flex: '1', marginRight: '0px', padding: '8px',border: '1px solid #fff',fontWeight: 'bold', fontSize: '35px', }}
         />
         <button onClick={handleSaveProjectDetail} style={{ padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#4CAF50', color: '#fff', border: '0px solid #fff', marginLeft: '8px' }}>저장</button>
         <button onClick={() => window.history.back()} style={{ marginLeft: '8px', padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#2196F3', color: '#fff', border: '0px solid #fff' }}>뒤로가기</button>
@@ -141,7 +141,7 @@ const ProjectDetail = ({userData, index}) => {
 
       {/* Project Description */}
       <div>
-        <p className="label" style={{ textAlign: 'left' }}>프로젝트 설명</p>
+        <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>프로젝트 설명</p>
         <input
           type="text"
           value={projectDescription}
@@ -153,37 +153,39 @@ const ProjectDetail = ({userData, index}) => {
 
       {/* Project Participation */}
       <div>
-      <p className="label" style={{ textAlign: 'left' }}>참여자들</p>
+      <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>참여자들</p>
         <ul>
           {projectParticipation.split(',').map((participant, index) => (
           <li key={index}>
               {participant.trim()} 
-              <button onClick={() => deleteParticipant(index)} style={{ marginLeft: '8px' }}>삭제</button>
+              <button onClick={() => deleteParticipant(index)} style={{marginLeft: '8px',background: 'red',color: 'white',border: 'none',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '20%',}}>x</button>
           </li>
           ))}
         </ul>
         {/* New Participant Input and Button */}
-        <div style={{ display: 'flex', marginBottom: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: '8px' }}>
           <input
             type="text"
             value={newParticipant}
             onChange={(e) => setNewParticipant(e.target.value)}
             className="participation-input"
+            style={{ background: '#fff',marginRight: '4px' }}
             />
-            <button onClick={handleCheckUser} className="add-button">+</button>
+          <button onClick={handleCheckUser} className="add-button">+</button>
         </div>
       </div>
 
       {/* To-do List */}
       <div>
-        <p className="label" style={{ textAlign: 'left' }}>To do list</p>
+        <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>To do list</p>
         <ul>
           {todos.map((todo, index) => (
-            <li key={index} className="list-item">
+            <li key={index} style={{ listStyle: 'none', margin: '0', padding: '0' }} className="list-item">
               <input
                 type="checkbox"
                 checked={todo.isChecked}
                 onChange={() => toggleTodo(index)}
+                style={{ background: '#fff', }}
               />
               <span
                 style={{
@@ -194,25 +196,26 @@ const ProjectDetail = ({userData, index}) => {
               >
                 {todo.text}
               </span>
-              <button onClick={() => deleteTodo(index)} style={{ marginLeft: '8px' }}>삭제</button>
+              <button onClick={() => deleteTodo(index)} style={{marginLeft: '8px',background: 'red',color: 'white',border: 'none',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '20%',}}>x</button>
             </li>
           ))}
         </ul>
         {/* New To-do Input and Button */}
-        <div style={{ display: 'flex', marginBottom: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: '8px' }}>
           <input
             type="text"
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value.slice(0,50))}
             className="project-input"
+            style={{ background: '#fff',marginRight: '4px'}}
           />
-          <button onClick={addTodo} className="add-button">+</button>
+          <button onClick={addTodo} className="add-button" >+</button>
         </div>
       </div>
 
       {/* 24*7 Table (Placeholder) */}
       <div>
-        <p className="label" style={{ textAlign: 'left' }}>일정표</p>
+        <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>일정표</p>
         <table className="time-table" border="1">
           <thead>
             <tr>
@@ -229,14 +232,16 @@ const ProjectDetail = ({userData, index}) => {
 
       {/* Appointments List */}
       <div>
-        <p className="label" style={{ textAlign: 'left' }}>약속잡기</p>
+        <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>약속잡기</p>
         <ul>
           {appointments.map((appointment, index) => (
-            <li key={index} className="list-item">
+            <li key={index} style={{ listStyle: 'none', margin: '0', padding: '0' }} className="list-item">
+
               <input
                 type="checkbox"
                 checked={appointment.isChecked}
                 onChange={() => toggleAppointment(index)}
+                style={{ background: '#fff'}}
               />
               <span
                 style={{
@@ -247,17 +252,18 @@ const ProjectDetail = ({userData, index}) => {
               >
                 {appointment.text}
               </span>
-              <button onClick={() => deleteAppointment(index)} style={{ marginLeft: '8px' }}>삭제</button>
+              <button onClick={() => deleteAppointment(index)} style={{marginLeft: '8px',background: 'red',color: 'white',border: 'none',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '20%',}}>x</button>
             </li>
           ))}
         </ul>
         {/* New Appointment Input and Button */}
-        <div style={{ display: 'flex', marginBottom: '8px' }}>
+        <div style={{ display: 'flex',alignItems: 'baseline', marginBottom: '8px' }}>
           <input
             type="text"
             value={newAppointment}
             onChange={(e) => setNewAppointment(e.target.value.slice(0,50))}
             className="project-input"
+            style={{ background: '#fff', marginRight: '4px'}}
           />
           <button onClick={addAppointments} className="add-button">+</button>
         </div>
