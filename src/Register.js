@@ -84,12 +84,15 @@ function Register(){
             return;
         }
         else if(!isPasswordSame){
-            alert("비밀번호가 일치하지 않습니다.")
+            alert("비밀번호가 일치하지 않습니다.");
             return;
         } else if(password.length <= 5 || password.length > 30){
             alert("비밀번호는 6자리 이상 30자리 이하로 설정해주세요.");
             return;
-        } 
+        } else if(!isDuplicated){
+            alert("아이디가 중복확인을 해주세요.");
+            return;
+        }
         try{
             const key = "jongmohyeonseo";
             const hash_password = HmacSHA256(password,key).toString();
