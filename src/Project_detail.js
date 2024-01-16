@@ -146,6 +146,15 @@ const ProjectDetail = ({userData, index}) => {
   useEffect(() => {
     gather_schedule();
   }, [] );
+
+  const preventdeleteleader=(index)=>{
+    const participantsArray = projectParticipation.split(',').map(participant => participant.trim());
+    if (participantsArray[index]===leader){
+      return null
+    }else{
+      return <button onClick={() => deleteParticipant(index)} style={{marginLeft: '8px',background: 'red',color: 'white',border: 'none',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '20%',}}>x</button>
+    }
+  }
   
   
 
@@ -185,8 +194,7 @@ const ProjectDetail = ({userData, index}) => {
           {projectParticipation.split(',').map((participant, index) => (
           <li key={index}>
               {participant.trim()} 
-              <button onClick={() => deleteParticipant(index)} style={{marginLeft: '8px',background: 'red',color: 'white',border: 'none',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '20%',}}>x</button>
-          </li>
+              {preventdeleteleader(index)}</li>
           ))}
         </ul>
         {/* New Participant Input and Button */}

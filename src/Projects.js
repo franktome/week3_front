@@ -58,7 +58,7 @@ const Projects = ({ userData, onProjectCreated }) => {
 
   const handlepassusername=(index)=> {
     if (userData.user_id === userData.project[index].project_leader){
-      navigate('../Dashboard_detail', {replace: false, state:{userData: userData, index: index}});
+      navigate('../Dashboard_detail', {replace: false, state:{userData: userData, index: index}, callback: onProjectCreated} );
     }
     else {
       navigate('../Noleader_Dash', {replace: false, state:{userData: userData, index: index}});
@@ -93,6 +93,7 @@ const Projects = ({ userData, onProjectCreated }) => {
                 </div>
                 <div style={{ background: '#eee', padding: '8px', borderRadius: '4px' }}>
                   <p> 설명: {project.project_description}</p>
+                  <p> 팀장: {project.project_leader}</p>
                   <p> 멤버: {project.team.join(', ')}</p>
                 </div>
               </div>
