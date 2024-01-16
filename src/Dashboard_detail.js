@@ -10,32 +10,11 @@ const Dashboard_detail = () => {
   const { state } = location;
   const {userData, index} = state;
 
-  // const [userData, setUserData] = useState({});
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get("http://172.10.7.46:80/profile", {
-  //       params: {
-  //         'user_id': userData.user_id,
-  //       },
-  //     });
-  //     setUserData(response.data);
-  //   } catch (error) {
-  //     console.error('Error fetching data', error);
-  //   }
-  // };
-
-  // const onProjectCreated = () => {
-  //   fetchData();
-  // }
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
+    <div style={{ display: 'flex', height: '100vh',overflow: 'hidden' }}>
       {/* 프로젝트 목록 */}
-      <div style={{ flex: '3', padding: '20px', borderRight: '1px solid #ddd' }}>
+      <div style={{ flex: '3', padding: '20px', borderRight: '1px solid #ddd',overflow: 'auto' }}>
         <Project_detail userData ={userData} index  = {index}/>
       </div>
       

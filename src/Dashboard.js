@@ -35,9 +35,9 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
+    <div style={{ display: 'flex', height: '100vh',overflow: 'hidden' }}>
       {/* 프로젝트 목록 */}
-      <div style={{ flex: '3', padding: '20px', borderRight: '1px solid #ddd' }}>
+      <div style={{ flex: '3', padding: '20px', borderRight: '1px solid #ddd', overflowY: 'auto' }}>
         <Projects userData ={userData} onProjectCreated = {onProjectCreated}/>
       </div>
       
