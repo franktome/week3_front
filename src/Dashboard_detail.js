@@ -3,20 +3,29 @@ import Profile from './Profile';
 import Project_detail from './Project_detail';
 import axios from 'axios'; 
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import {  useLocation } from 'react-router-dom';
 
-const Dashboard_detail = () => {
-  const location = useLocation();
-  const { state } = location;
-  const user_id = state?.user_id;
+const Dashboard_detail = ({ route }) => {
+  //const location = useLocation();
+  //const { state } = location;
+  //const user_id = state?.user_id;
+  
+  
+  const {onProjectCreated, state} = route.params;
   const {userData, index} = state;
+  
+  useEffect(() => {
+    onProjectCreated();
+    }, []);
 
+  
   // const [new_userData, setUserData] = useState({});
   // const fetchData = async () => {
   //   try {
-  //     const response = await axios.get("http://172.10.7.46:80/profile", {
+  //     const response = await axios.get("http://172.10.7.46:80/get_project_info", {
   //       params: {
-  //         'user_id': user_id,
+  //         'user_id': userData.user_id,
+  //         'project_id': userData.project[index].project_id,
   //       },
   //     });
   //     setUserData(response.data);
@@ -25,9 +34,7 @@ const Dashboard_detail = () => {
   //   }
   // };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+ 
 
 
   return (
