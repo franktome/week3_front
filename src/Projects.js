@@ -69,6 +69,7 @@ const Projects = ({ userData, onProjectCreated }) => {
   //   navigate('../Dashboard_detail', {replace: false, state:{userData: userData, index: index}});
   // }
 
+
   return (
     <div>
       <h1 style={{ textAlign: 'center', fontSize: '2em', marginBottom: '16px' }}>나의 프로젝트</h1>
@@ -84,7 +85,7 @@ const Projects = ({ userData, onProjectCreated }) => {
         <ul style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', listStyleType: 'none' }}>
           {userData.project.map((project, index) => (
             <li key={index} style={{ position: 'relative', border: '1px solid #ddd', padding: '16px', textAlign: 'center', cursor: 'pointer' }}>
-              <div style={{ position: 'absolute', top: '5px', right: '5px', cursor: 'pointer', padding: '5px', background: '#fff', border: '1px solid #ddd', borderRadius: '0%' }} onClick={() => handleDeleteProject(index)}>
+              <div style={{padding: '8px 8px', position: 'absolute', top: '5px', right: '5px', cursor: 'pointer', padding: '5px', background: '#fff', border: '1px solid #ddd', borderRadius: '0%' }} onClick={() => handleDeleteProject(index)}>
                 x
               </div>
 

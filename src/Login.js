@@ -18,12 +18,12 @@ const Login = () => {
       alert('Please enter both username and password.');
     } else {
         try {
-            const response = await axios.get("http://172.10.7.46:80/login", 
-            {params: { 
+            const response = await axios.post("http://172.10.7.46:80/login", 
+             { 
                 'user_id' : username,
                 'user_pw' : HmacSHA256(password,key).toString()
             }
-        });
+        );
             if (response.data === "True") {
                 // 로그인 성공 처리
                 alert(username + ' 로그인 성공!');
