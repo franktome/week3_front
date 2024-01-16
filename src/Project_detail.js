@@ -11,6 +11,7 @@ const ProjectDetail = ({userData, index}) => {
   const project_id = userData.project[index].project_id;
   const leader = userData.project[index].project_leader;
   const [tablestate, settablestate] = useState(Array.from({ length: 24 }, () => Array(7).fill(0)));
+  const [tooltipInfo, setTooltipInfo] = useState(Array.from({ length: 24 }, () => Array(7).fill([])));
 
   // State variables
   const [projectName, setProjectName] = useState(userData.project[index].project_name);
@@ -131,6 +132,7 @@ const ProjectDetail = ({userData, index}) => {
       console.log(response.data.gathered_schedule);
       if(response.data){
         settablestate(response.data.gathered_schedule);
+        setTooltipInfo(response.data.who); 
         console.log("여기 주목"+tablestate);
         console.log(tablestate);
       } else{
@@ -144,6 +146,7 @@ const ProjectDetail = ({userData, index}) => {
   useEffect(() => {
     gather_schedule();
   }, [] );
+  
   
 
   // JSX; structure
@@ -259,13 +262,13 @@ const ProjectDetail = ({userData, index}) => {
     
               <tr key={hour}>
                 <td style={{ fontSize: '12px', lineHeight: '0.5' }}>{`${hour}:00`}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[0]>0 ? 'green' : 'white')}}>{/* Data for Monday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[1]>0 ? 'green' : 'white')}}>{/* Data for Tuesday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[2]>0 ? 'green' : 'white')}}>{/* Data for Wednesday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[3]>0 ? 'green' : 'white')}}>{/* Data for Thursday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[4]>0 ? 'green' : 'white')}}>{/* Data for Friday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[5]>0 ? 'green' : 'white')}}>{/* Data for Saturday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[6]>0 ? 'green' : 'white')}}>{/* Data for Sunday */}</td>
+                <td title={tooltipInfo?.[hour]?.[0].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[0]>0 ? 'green' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[1].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[1]>0 ? 'green' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[2].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[2]>0 ? 'green' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[3].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[3]>0 ? 'green' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[4].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[4]>0 ? 'green' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[5].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[5]>0 ? 'green' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[6].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[6]>0 ? 'green' : 'white')}}></td>
               </tr>
             ))}
           </tbody>
