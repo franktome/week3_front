@@ -175,9 +175,7 @@ function Profile({userData, onProjectCreated}) {
           'schedule_list' : schedule_list
       });
       if (response.data === "True") {
-          alert("스케줄 저장 완료했습니다.");
           onProjectCreated();
-
       } else{
           alert("스케줄 저장에 실패했습니다.");
       }
