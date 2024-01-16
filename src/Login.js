@@ -64,7 +64,7 @@ const Login = () => {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
       <div id="loginForm" style={{ textAlign: 'center', width: '100%', maxWidth: '400px', padding: '20px', border: '1px solid #ddd', borderRadius: '8px' }}>
-        <h2 style={{ margin: '0 0 20px' }}>로그인 하기</h2>
+        <h2 style={{ margin: '0 0 20px' }}>로그인</h2>
         <label style={{ display: 'block', marginBottom: '10px', width: '100%', textAlign: 'left' }}>
           아이디
           <input

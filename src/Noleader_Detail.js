@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './Project_detail.css'; // Stylesheet
 import { useLocation } from 'react-router-dom';
@@ -8,6 +8,7 @@ const Noleader_Detail = ({userData, index}) => {
   console.log("ProjectDetail :"+userData)
   const project_id = userData.project[index].project_id;
   const leader = userData.project[index].project_leader;
+  const [tablestate, settablestate] = useState(Array.from({ length: 24 }, () => Array(7).fill(0)));
 
   // State variables
   const [projectName, setProjectName] = useState(userData.project[index].project_name);
@@ -122,6 +123,26 @@ const Noleader_Detail = ({userData, index}) => {
     }
   };
 
+  const gather_schedule = async ()=> {
+    try{
+      const response = await axios.post("http://172.10.7.46:80/gather_schedule",{participants :userData.project[index].team});
+      console.log(response.data.gathered_schedule);
+      if(response.data){
+        settablestate(response.data.gathered_schedule);
+        console.log("여기 주목"+tablestate);
+        console.log(tablestate);
+      } else{
+        console.error('Error no data');
+      }
+    } catch (error) {
+      console.error('Error gather_schedule data',error);
+    }
+  };
+
+  useEffect(() => {
+    gather_schedule();
+  }, [] );
+
   // JSX structure
   return (
     <div className="project-detail-container" style={{ textAlign: 'left' }}>
@@ -216,16 +237,33 @@ const Noleader_Detail = ({userData, index}) => {
       {/* 24*7 Table (Placeholder) */}
       <div>
         <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>일정표</p>
-        <table className="time-table" border="1">
+        <table className="time-table" border="1" style={{ width: '70%', margin: 'auto' }}>
           <thead>
             <tr>
-              <th>시간</th>
-              <th>월</th>
-              {/* ... Days of the week */}
+              <th style={{ width: '10%', fontSize: '14px', lineHeight: '0.5' }}>시간</th>
+              <th style={{ width: '10%', fontSize: '14px', lineHeight: '0.5' }}>월</th>
+              <th style={{ width: '10%', fontSize: '14px', lineHeight: '0.5' }}>화</th>
+              <th style={{ width: '10%', fontSize: '14px', lineHeight: '0.5' }}>수</th>
+              <th style={{ width: '10%', fontSize: '14px', lineHeight: '0.5' }}>목</th>
+              <th style={{ width: '10%', fontSize: '14px', lineHeight: '0.5' }}>금</th>
+              <th style={{ width: '10%', fontSize: '14px', lineHeight: '0.5' }}>토</th>
+              <th style={{ width: '10%', fontSize: '14px', lineHeight: '0.5' }}>일</th>
             </tr>
           </thead>
           <tbody>
             {/* Data for each time slot */}
+            {Array.from({ length: 24 }).map((_, hour) => (
+              <tr key={hour}>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' }}>{`${hour}:00`}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[0]>0 ? 'green' : 'white')}}>{/* Data for Monday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[1]>0 ? 'green' : 'white')}}>{/* Data for Tuesday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[2]>0 ? 'green' : 'white')}}>{/* Data for Wednesday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[3]>0 ? 'green' : 'white')}}>{/* Data for Thursday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[4]>0 ? 'green' : 'white')}}>{/* Data for Friday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[5]>0 ? 'green' : 'white')}}>{/* Data for Saturday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[6]>0 ? 'green' : 'white')}}>{/* Data for Sunday */}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

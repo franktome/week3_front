@@ -49,6 +49,7 @@ const Projects = ({ userData, onProjectCreated }) => {
       if (response.data === 'True') {
         alert("프로젝트 삭제 완료");
         onProjectCreated();
+        console.log("실행되었다"+userData.project);
       } else {
         alert("프로젝트 삭제에 실패했습니다.");
       }
@@ -62,7 +63,6 @@ const Projects = ({ userData, onProjectCreated }) => {
     else {
       navigate('../Noleader_Dash', {replace: false, state:{userData: userData, index: index}});
     }
-    
   }
 
 

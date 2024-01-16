@@ -8,7 +8,26 @@ import { useLocation } from 'react-router-dom';
 const Dashboard_detail = () => {
   const location = useLocation();
   const { state } = location;
+  const user_id = state?.user_id;
   const {userData, index} = state;
+
+  // const [new_userData, setUserData] = useState({});
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get("http://172.10.7.46:80/profile", {
+  //       params: {
+  //         'user_id': user_id,
+  //       },
+  //     });
+  //     setUserData(response.data);
+  //   } catch (error) {
+  //     console.error('Error fetching data', error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
 
   return (

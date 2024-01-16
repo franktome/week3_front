@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import './Profile.css';
 
-function Profile({userData}) {
+function Profile({userData, onProjectCreated}) {
 
   console.log(userData);
   const [gridItems, setGridItems] = useState(Array(168).fill(0));
@@ -155,7 +155,6 @@ function Profile({userData}) {
   }
 
   //###########################################3
-
   // 스케쥴 정보를 서버로 전달
   const saveScheduleHandler = async() => {
     const schedule_list= [];
@@ -177,6 +176,8 @@ function Profile({userData}) {
       });
       if (response.data === "True") {
           alert("스케줄 저장 완료했습니다.");
+          onProjectCreated();
+
       } else{
           alert("스케줄 저장에 실패했습니다.");
       }
@@ -232,7 +233,6 @@ function Profile({userData}) {
       <div className='todo_wrapper'>
 
         {view_appointment()}
-
 
       </div>
     </div>

@@ -125,27 +125,28 @@ const ProjectDetail = ({userData, index}) => {
     }
   };
 
-  useEffect(() => {
+  const gather_schedule = async ()=> {
     try{
-      const gather_schedule = async() => {
-        const response = await axios.post("http://172.10.7.46:80/gather_schedule", 
-        {
-         participants : userData.project[index].team
-        });
-        // console.log(userData.project[index].team);
-        console.log(response.data.gathered_schedule);
-        //console.log("여기 확인"+response.data.gathered_schedule[4][1]);
+      const response = await axios.post("http://172.10.7.46:80/gather_schedule",{participants :userData.project[index].team});
+      console.log(response.data.gathered_schedule);
+      if(response.data){
         settablestate(response.data.gathered_schedule);
+        console.log("여기 주목"+tablestate);
+        console.log(tablestate);
+      } else{
+        console.error('Error no data');
       }
-      gather_schedule();
-    }catch(error){
-
+    } catch (error) {
+      console.error('Error gather_schedule data',error);
     }
-  
+  };
+
+  useEffect(() => {
+    gather_schedule();
   }, [] );
   
 
-  // JSX structure
+  // JSX; structure
   return (
     <div className="project-detail-container" style={{ textAlign: 'left' }}>
       {/* Project Name */}
@@ -255,15 +256,16 @@ const ProjectDetail = ({userData, index}) => {
           <tbody>
             {/* Data for each time slot */}
             {Array.from({ length: 24 }).map((_, hour) => (
+    
               <tr key={hour}>
                 <td style={{ fontSize: '12px', lineHeight: '0.5' }}>{`${hour}:00`}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5', backgroundColor: (tablestate[hour][0]>0? 'green' : 'white') }}>{/* Data for Monday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate[hour][1]>0? 'green' : 'white')}}>{/* Data for Tuesday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate[hour][2]>0? 'green' : 'white')}}>{/* Data for Wednesday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate[hour][3]>0? 'green' : 'white')}}>{/* Data for Thursday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate[hour][4]>0? 'green' : 'white')}}>{/* Data for Friday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate[hour][5]>0? 'green' : 'white')}}>{/* Data for Saturday */}</td>
-                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate[hour][6]>0? 'green' : 'white')}}>{/* Data for Sunday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[0]>0 ? 'green' : 'white')}}>{/* Data for Monday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[1]>0 ? 'green' : 'white')}}>{/* Data for Tuesday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[2]>0 ? 'green' : 'white')}}>{/* Data for Wednesday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[3]>0 ? 'green' : 'white')}}>{/* Data for Thursday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[4]>0 ? 'green' : 'white')}}>{/* Data for Friday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[5]>0 ? 'green' : 'white')}}>{/* Data for Saturday */}</td>
+                <td style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[6]>0 ? 'green' : 'white')}}>{/* Data for Sunday */}</td>
               </tr>
             ))}
           </tbody>
