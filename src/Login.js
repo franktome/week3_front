@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import axios from 'axios';
 import { HmacSHA256 } from 'crypto-js';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 
 const Login = () => {
@@ -51,19 +52,55 @@ const Login = () => {
   };
 
   const buttonStyle = {
-    backgroundColor: '#4CAF50',
-    color: 'white',
+    background: '#FFC300',
+    color: 'black',
+    fontWeight: 'bold',
     padding: '12px 24px',
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
-    fontSize: '16px',
+    fontSize: '15px',
     height: '50px', // 높이를 원하는 값으로 설정
   };
 
+  const upperHalfStyle = {
+    flex: 2,
+    background: '#535353',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
+  };
+
+  const lowerHalfStyle = {
+    flex: 5,
+    background: '#FFC300',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
+  const titleStyle = {
+    fontSize: '55px',
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: '20px',
+    display: 'block'
+  };
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      <div id="loginForm" style={{ textAlign: 'center', width: '100%', maxWidth: '400px', padding: '20px', border: '1px solid #ddd', borderRadius: '8px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <div style={upperHalfStyle}>
+        {/* Upper half content */}
+        <div style={titleStyle}>BUSBOY</div>
+        <div style={{ textAlign: 'center',color:'white' }}>
+          "To allow you to focus on the core aspects, we take responsibility for less critical tasks"
+        </div>
+        {/* ... */}
+      </div>
+      <div style={lowerHalfStyle}>
+        {/* Lower half content */}
+        <div id="loginForm" style={{ background: "white", textAlign: 'center', width: '100%', maxWidth: '400px', padding: '20px', border: '1px solid #000', borderRadius: '8px' }}>
         <h2 style={{ margin: '0 0 20px' }}>로그인</h2>
         <label style={{ display: 'block', marginBottom: '10px', width: '100%', textAlign: 'left' }}>
           아이디
@@ -83,8 +120,9 @@ const Login = () => {
             style={{ width: '100%', padding: '10px', boxSizing: 'border-box', marginBottom: '20px', fontSize: '16px' }}
           />
         </label>
-        <button onClick={handleLogin} style={{ ...buttonStyle, marginRight: '8px' }}>Login</button>
-        <button onClick={handleSignUp} style={buttonStyle}>회원가입</button>
+        <button className="button" onClick={handleLogin} style={{ ...buttonStyle, marginRight: '8px' }}>Login</button>
+        <button className="button" onClick={handleSignUp} style={buttonStyle}>회원가입</button>
+      </div>
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ import './Profile.css';
 function Profile({userData, onProjectCreated}) {
 
   console.log(userData);
-  const [gridItems, setGridItems] = useState(Array(168).fill(0));
   const gridRef = useRef(null);
   const [gridPosition, setGridPosition] = useState({left:0, top:0, right:0, bottom:0, w:0, h:0});
   const [planname, setPlanName] = useState('');
@@ -56,7 +55,7 @@ function Profile({userData, onProjectCreated}) {
     setPlanName('');
     setPlanTime(0);
     const new_block = {
-      left_index: 0,
+      left_index: 1,
       top_index: 0,
       plan_name: planname,
       plan_time: plantime
@@ -77,7 +76,7 @@ function Profile({userData, onProjectCreated}) {
         top: rect.top,
         right: rect.right,
         bottom: rect.bottom,
-        w: (rect.right - rect.left) / 7,
+        w: (rect.right - rect.left) / 8,
         h: (rect.bottom - rect.top) / 24
       });
     };
@@ -115,7 +114,7 @@ function Profile({userData, onProjectCreated}) {
     const left = event.clientX - offset.left;
     const top = event.clientY - offset.top;
     
-    const index_left = Math.round((left -gridPosition.left) / gridPosition.w);
+    const index_left = Math.round((left - gridPosition.left) / gridPosition.w);
     const index_top = Math.round((top - gridPosition.top) / gridPosition.h);
 
     if (trashHover) {
@@ -130,7 +129,7 @@ function Profile({userData, onProjectCreated}) {
   const updateDraggedBlock = (index, info) => {
     // 격자 밖으로 나가는지 확인
     const time_len = blockList[index].plan_time;
-    if(info.left_index > 6 || info.left_index < 0 || info.top_index < 0 || info.top_index + time_len > 24){
+    if(info.left_index > 7 || info.left_index <= 0 || info.top_index < 0 || info.top_index + time_len > 24){
       return;
     }
     const updatedblockList = [...blockList];
@@ -189,7 +188,8 @@ function Profile({userData, onProjectCreated}) {
     return (<div className='appointment_view'>
             {text}
     </div>)
-  }
+  };
+
   const view_appointment= () => {
     return projectList.map((project)=>{
       return project.appointment.map((item)=>{
@@ -199,23 +199,53 @@ function Profile({userData, onProjectCreated}) {
     })
   };
 
+  const make_shedule_grid = (hour, index) =>{
+    if(index <= 0){
+      return (<div key={hour} className='grid_hour'>{`${hour}:00`}</div>);
+    } 
+    else{
+      return(
+        <div
+        key={index}
+        className='grid_item'
+        draggable="false"></div>
+      );
+    }
+  };
+
+
+
   return (
     <div className='profile_wrapper'>
       <div className='user_info_wrapper'>
-        <p>{userData.user_name}님</p>
+        <p></p>
+      </div>
+      <div className='todo_container'>
+      <div className='todo_wrapper_text'>{userData.user_name}님 프로젝트 일정</div>
+        <div className='todo_wrapper'>
+          <div className='appointment_list_wrapper'>
+            {view_appointment()}
+          </div>
+        </div>
       </div>
       <div className='schedule_manager_wrapper'>
-        <div className='date_wrapper'></div> 
+        <div className='schedule_manager_text'>일정 관리</div>
+        <div className='date_wrapper'>
+          <div className='date_text'>시간</div>
+          <div className='date_text'>Mon</div>
+          <div className='date_text'>Tue</div>
+          <div className='date_text'>Wed</div>
+          <div className='date_text'>Thu</div>
+          <div className='date_text'>Fri</div>
+          <div className='date_text'>Sat</div>
+          <div className='date_text'>Sun</div>
+        </div> 
         <div ref={gridRef} className='schedule_wrapper' onDrop={drop} onDragOver={allowDrop}>
-          {gridItems.map((item, index) => (
-            <div
-              key={index}
-              className='grid_item'
-              draggable="false"
-              style={{ backgroundColor: item === 1 ? '#4CAF50' : '#D9D9D9' }}
-            ></div>
+          {Array.from({length : 24}).map((_, hour) => (
+            Array.from({length : 8}).map((_, index)=>{
+              return make_shedule_grid(hour, index);
+             })
           ))}
-
           {initialize_block()}
         
         </div>
@@ -224,18 +254,13 @@ function Profile({userData, onProjectCreated}) {
         <div className="create_box_input" >
           <input type='text' className='plan_name' onChange={(e)=> setPlanName(e.target.value.slice(0,5))} value = {planname}></input>
           <input type='number' className='plan_len' onChange={(e)=> limitPlanTime(e)} value = {plantime}></input>
-          <button type="button" onClick={createBlock}>+</button>
+          <button type="button" className='addblock' onClick={createBlock}>+</button>
         </div>
         <button className="save_schedule_button" onClick={saveScheduleHandler}>저장</button>
-      </div>
-      <div className='todo_wrapper'>
-
-        {view_appointment()}
 
       </div>
     </div>
 
   );
 }
-
 export default Profile;

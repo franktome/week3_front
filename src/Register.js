@@ -116,39 +116,89 @@ function Register(){
             console.error("Error in submitRegister : ", error);
         }
     }
+
+    const registerStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        background: "white",
+        overflow: 'hidden',
+      };
+    
+      const upperHalfStyle = {
+        background: '#535353',
+        width: '100%',
+        padding: '15px',
+        textAlign: 'center',
+        marginTop: '-15px',
+      };
+    
+      const lowerHalfStyle = {
+        background: '#FFC300',
+        width: '100%',
+        padding: '36px',
+        textAlign: 'center',
+        alignItems: 'center',
+        marginBottom: "0px"
+       
+      };
+    
+      const busboyStyle = {
+        fontSize: '35px',
+        fontWeight: 'bold',
+        color: 'white',
+        marginTop: '-20px',
+        padding: '15px'
+      };
+    
+      const motoStyle = {
+        fontSize: '15px',
+        color: 'white',
+        paddingTop: '20px',
+      };
     
     return (
-        <div className='Register'>
-            <h2> App name 회원가입</h2>
-            <div className="name_input_class">
-                <label htmlFor="register_name_input">이름</label>
-                <input type="text" id="register_name_input" onChange={setUsernameText} />
-                <div className='blank'></div>
+        <div style={registerStyle}>
+            <div style={upperHalfStyle}>
+                <div style={busboyStyle}>BUSBOY</div>
+                <div style={motoStyle}>"To allow you to focus on the core aspects, we take responsibility for less critical tasks"</div>
             </div>
-            <div className="belong_input_class">
-                <label htmlFor="register_belong_input">소속</label>
-                <input type="text" id="register_belong_input" onChange={setBelongText} />
-                <div className='blank'></div>
-            </div>
-            <div className="id_input_class">
-                <label htmlFor="register_id_input">아이디</label>
-                <input type="text" id="register_id_input" onChange={setId}/>
-                <button type="submit" onClick={handleDuplicate} disabled={isDuplicated}
-                style={{background : isDuplicated ? '#D9D9D9':'#4CAF50'}}>중복확인</button>
+            <div style={lowerHalfStyle}>
+            <div className='Register' style={{background: "white", borderRadius: '4px',marginTop: '5px',padding: '15px', border: '1px solid #000' }}>
+                <h2>회원가입</h2>
+                <div className="name_input_class">
+                    <label htmlFor="register_name_input">이름</label>
+                    <input type="text" id="register_name_input" onChange={setUsernameText} />
+                    <div className='blank'></div>
+                </div>
+                <div className="belong_input_class">
+                    <label htmlFor="register_belong_input">소속</label>
+                    <input type="text" id="register_belong_input" onChange={setBelongText} />
+                    <div className='blank'></div>
+                </div>
+                <div className="id_input_class">
+                    <label htmlFor="register_id_input">아이디</label>
+                    <input type="text" id="register_id_input" onChange={setId}/>
+                    <button type="submit" onClick={handleDuplicate} disabled={isDuplicated}
+                    style={{background : isDuplicated ? '#535353':'#ffc300', fontWeight: 'bold'}}>중복확인</button>
 
-            </div>
-            <div className="password_input_class">
-                <label htmlFor="register_password_input">비밀번호</label>
-                <input type="password" id="register_password_input" onChange={checkPassword1}/>
-                <div className='blank'></div>
-            </div>
-            <div className="register_password_re_input">
-                <label htmlFor="text1">비밀번호 확인</label>
-                <input type="password" id="register_password_re_input" onChange={checkPassword2} />
-                <div className='blank'></div>
-            </div>
+                </div>
+                <div className="password_input_class">
+                    <label htmlFor="register_password_input">비밀번호</label>
+                    <input type="password" id="register_password_input" onChange={checkPassword1}/>
+                    <div className='blank'></div>
+                </div>
+                <div className="register_password_re_input">
+                    <label htmlFor="text1">비밀번호 확인</label>
+                    <input type="password" id="register_password_re_input" onChange={checkPassword2} />
+                    <div className='blank'></div>
+                </div>
 
-            <button className="submit_register" type="submit" onClick={submitRegister}>제출</button>
+            <button style={{fontWeight: 'bold',}} className="submit_register" type="submit" onClick={submitRegister}>제출</button>
+        </div>
+        </div>
         </div>
     );
 }
