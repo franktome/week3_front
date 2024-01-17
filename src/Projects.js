@@ -69,30 +69,29 @@ const Projects = ({ userData, onProjectCreated }) => {
 
   return (
     <div>
-      <div style={{ background: 'rgba(255, 195, 0, 0.6)', padding: '16px', textAlign: 'center',border: 'px solid #888',borderRadius: '10px',boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', }}>
-        <h1 style={{ fontSize: '2em', marginBottom: '16px',textOrientation: 'mixed',textShadow: '3px 3px 5px rgba(0, 0, 0, 0.5)'}}>나의 프로젝트</h1>
+      <div style={{ background: 'white', padding: '8px', textAlign: 'center',border: 'px solid #888',borderRadius: '10px',marginBottom:"50px" }}>
+        <h1 style={{ fontSize: '2em', marginBottom: '16px',textOrientation: 'mixed'}}>{userData.user_name}의 프로젝트</h1>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-          <button onClick={togglePopup} style={{ padding: '0.5em', fontSize: '1em',boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)' }}>프로젝트 추가하기</button>
+          <button onClick={togglePopup} style={{borderRadius:'5px',border: '0px solid #fff', background: '#03C75A',color:'white',padding: '0.5em', fontSize: '1em',boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)' }}>프로젝트 추가하기</button>
           {isPopupOpen && (<AddProjectPopup onClose={togglePopup} onAddProject={handleAddProject} />)}
-          <button style={{ padding: '0.5em', fontSize: '1em',boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)' }} onClick={handleLogout}>로그아웃</button>
+          <button style={{ borderRadius:'5px' ,border: '0px solid #fff',background: '#03C75A',color:'white',padding: '0.5em', fontSize: '1em',boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)' }} onClick={handleLogout}>로그아웃</button>
         </div>
       </div>
-
       
       {userData.project && userData.project.length > 0 ? (
         <ul style={{  display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', listStyleType: 'none', }}>
           {userData.project.map((project, index) => (
-            <li key={index} style={{backgroundImage: 'url("./memo.png")', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', background: '#FFF373',  position: 'relative', border: '1px solid #ddd', padding: '16px', textAlign: 'center', cursor: 'pointer' }}>
-              <div style={{padding: '8px 8px', position: 'absolute', top: '5px', right: '5px', cursor: 'pointer', padding: '5px', background: '#fff', border: '1px solid #ddd', borderRadius: '0%' }} onClick={() => handleDeleteProject(index)}>
+            <li key={index} style={{ borderRadius: '8px', backgroundImage: 'url("./memo.png")', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', background: '#03C75A',  position: 'relative', border: '1px solid #ddd', textAlign: 'center', cursor: 'pointer' }}>
+              <div style={{padding: '8px 8px', position: 'absolute', top: '5px', right: '5px', cursor: 'pointer', padding: '5px', background: '#03C75A', borderRadius: '0%',color:'white' }} onClick={() => handleDeleteProject(index)}>
               x
               </div>
 
               {/* 클릭 시 프로젝트 세부 정보 페이지로 이동 */}
               <div onClick={()=>handlepassusername(index)} style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div style={{ background: 'rgba(238, 238, 238, 0.5)', padding: '8px', borderRadius: '8px', marginBottom: '8px' }}>
-                  <p style={{ fontWeight: 'bold' }}> {project.project_name} </p>
+                <div style={{ background: '#03C75A', padding: '8px', borderTopLeftRadius: '8px',borderTopRightRadius: '8px', marginBottom: '8px',marginTop: '-16px' }}>
+                  <p style={{ fontWeight: 'bold',color:'white',fontSize:'20px' }}> {project.project_name} </p>
                 </div>
-                <div style={{ background: 'rgba(238, 238, 238, 0.5)', padding: '8px', borderRadius: '8px' }}>
+                <div style={{ background: 'white', padding: '8px',borderBottomLeftRadius:'8px',borderBottomRightRadius:'8px',color:'black' }}>
                   <p> 설명: {project.project_description}</p>
                   <p> 팀장: {project.project_leader}</p>
                   <p> 멤버: {project.team.join(', ')}</p>

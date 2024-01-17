@@ -128,7 +128,7 @@ function Register(){
       };
     
       const upperHalfStyle = {
-        background: '#535353',
+        background: '#03C75A',
         width: '100%',
         padding: '15px',
         textAlign: 'center',
@@ -136,7 +136,7 @@ function Register(){
       };
     
       const lowerHalfStyle = {
-        background: '#FFC300',
+        background: 'white',
         width: '100%',
         padding: '36px',
         textAlign: 'center',
@@ -182,7 +182,7 @@ function Register(){
                     <label htmlFor="register_id_input">아이디</label>
                     <input type="text" id="register_id_input" onChange={setId}/>
                     <button type="submit" onClick={handleDuplicate} disabled={isDuplicated}
-                    style={{background : isDuplicated ? '#535353':'#ffc300', fontWeight: 'bold'}}>중복확인</button>
+                    style={{background : isDuplicated ? '#535353':'#03C75A', fontWeight: 'bold', color:'white'}}>중복확인</button>
 
                 </div>
                 <div className="password_input_class">
@@ -196,7 +196,7 @@ function Register(){
                     <div className='blank'></div>
                 </div>
 
-            <button style={{fontWeight: 'bold',}} className="submit_register" type="submit" onClick={submitRegister}>제출</button>
+            <button style={{fontWeight: 'bold',}} className="submit_register" type="submit" onClick={submitRegister} color='white'>제출</button>
         </div>
         </div>
         </div>

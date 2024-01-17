@@ -52,20 +52,20 @@ const Login = () => {
   };
 
   const buttonStyle = {
-    background: '#FFC300',
-    color: 'black',
+    background: '#03C75A',
+    color: 'white',
     fontWeight: 'bold',
     padding: '12px 24px',
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
     fontSize: '15px',
-    height: '50px', // 높이를 원하는 값으로 설정
+    height: '45px', // 높이를 원하는 값으로 설정
   };
 
   const upperHalfStyle = {
     flex: 2,
-    background: '#535353',
+    background: '#03C75A',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -74,7 +74,7 @@ const Login = () => {
 
   const lowerHalfStyle = {
     flex: 5,
-    background: '#FFC300',
+    background: 'white',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -120,8 +120,10 @@ const Login = () => {
             style={{ width: '100%', padding: '10px', boxSizing: 'border-box', marginBottom: '20px', fontSize: '16px' }}
           />
         </label>
-        <button className="button" onClick={handleLogin} style={{ ...buttonStyle, marginRight: '8px' }}>Login</button>
-        <button className="button" onClick={handleSignUp} style={buttonStyle}>회원가입</button>
+        <div style={{ alignItems: 'baseline', marginBottom: '8px' }}>
+        <button className="button" onClick={handleLogin} >로그인</button>
+        <button className="button" onClick={handleSignUp} >회원가입</button>
+        </div>
       </div>
       </div>
     </div>
