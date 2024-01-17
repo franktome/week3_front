@@ -4,7 +4,7 @@ import Noleader_Detail from './Noleader_Detail';
 import axios from 'axios'; 
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
+import './Noleader_Dash.css'
 
 const Noleader_Dash = () => {
   const location = useLocation();
@@ -14,7 +14,7 @@ const Noleader_Dash = () => {
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'hidden'}}>
       {/* 프로젝트 목록 */}
-      <div style={{ flex: '3', padding: '3vh', overflowY: 'auto' }}>
+      <div className="NoleaderDetail">
         <Noleader_Detail userData ={userData} index = {index} />
       </div>
       

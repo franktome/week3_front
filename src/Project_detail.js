@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect,} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Project_detail.css'; // Stylesheet
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 
 
 const ProjectDetail = ({userData, index}) => {
+  const navigate = useNavigate();
+
   console.log("ProjectDetail :"+userData)
   const project_id = userData.project[index].project_id;
   const leader = userData.project[index].project_leader;
@@ -152,9 +153,25 @@ const ProjectDetail = ({userData, index}) => {
     if (participantsArray[index]===leader){
       return null
     }else{
-      return <button onClick={() => deleteParticipant(index)} style={{marginLeft: '8px',background: 'red',color: 'white',border: 'none',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '20%',}}>x</button>
+      return <div><button onClick={() => deleteParticipant(index)} style={{marginLeft: '8px',background: 'red',color: 'white',border: 'none',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '20%',}}>x</button>
+      <button onClick={() => change_leader(index)} style={{marginLeft: '8px',background: 'white',color: '',border: '1px solid #000',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '20%',}}>팀장</button>
+      </div>
     }
   }
+
+  const change_leader = async(index) => {
+    const participantsArray = projectParticipation.split(',').map(participant => participant.trim());
+    const change_leader_data = {user_id: userData.user_id,
+      project_id: project_id,
+      new_leader: participantsArray[index] 
+      };
+      try {
+        const response = await axios.post("http://172.10.7.46:80/change_leader", change_leader_data);
+        navigate('../Dashboard',{replace: true, state:{user_id: userData.user_id}});
+      } catch (error) {
+        console.error('Error saving project detail:', error);
+      }
+  };
   
   
 
@@ -193,8 +210,11 @@ const ProjectDetail = ({userData, index}) => {
         <ul>
           {projectParticipation.split(',').map((participant, index) => (
           <li key={index}>
-              {participant.trim()} 
-              {preventdeleteleader(index)}</li>
+              <div style={{ display: 'flex', listStyleType: 'none', }}>
+                {participant.trim()} 
+                {preventdeleteleader(index)} 
+              </div>
+          </li>
           ))}
         </ul>
         {/* New Participant Input and Button */}
@@ -209,7 +229,6 @@ const ProjectDetail = ({userData, index}) => {
           <button onClick={handleCheckUser} className="add-button">+</button>
         </div>
       </div>
-
       {/* To-do List */}
       <div>
         <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>To do list</p>

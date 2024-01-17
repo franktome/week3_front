@@ -102,13 +102,13 @@ const Login = () => {
         {/* Lower half content */}
         <div id="loginForm" style={{ background: "white", textAlign: 'center', width: '100%', maxWidth: '400px', padding: '20px', border: '1px solid #000', borderRadius: '8px' }}>
         <h2 style={{ margin: '0 0 20px' }}>로그인</h2>
-        <label style={{ display: 'block', marginBottom: '10px', width: '100%', textAlign: 'left' }}>
+        <label style={{ display: 'block', marginBottom: '10px', width: '100%', textAlign: 'left'}}>
           아이디
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            style={{ width: '100%', padding: '10px', boxSizing: 'border-box', marginBottom: '10px', fontSize: '16px' }}
+            style={{width: '95%', padding: '10px', boxSizing: 'border-box', marginBottom: '10px', fontSize: '16px' }}
           />
         </label>
         <label style={{ display: 'block', marginBottom: '20px', width: '100%', textAlign: 'left' }}>
@@ -117,7 +117,7 @@ const Login = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{ width: '100%', padding: '10px', boxSizing: 'border-box', marginBottom: '20px', fontSize: '16px' }}
+            style={{ width: '95%', padding: '10px', boxSizing: 'border-box', marginBottom: '20px', fontSize: '16px' }}
           />
         </label>
         <div style={{ alignItems: 'baseline', marginBottom: '8px' }}>

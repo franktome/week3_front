@@ -80,7 +80,7 @@ function Profile({userData, onProjectCreated}) {
 
     setProjectList(userData && userData.project ? userData.project : []);
     setBlockList(userData && userData.schedule ? userData.schedule : []);
-
+    
     updateGridPosition();
     // 윈도우 리사이즈 등에 대응하여 그리드 위치를 업데이트하는 이벤트 리스너 등록
     window.addEventListener('resize', updateGridPosition);
@@ -218,20 +218,9 @@ function Profile({userData, onProjectCreated}) {
 
   return (
     <div className='profile_wrapper'>
-      <div className='user_info_wrapper'>
-        <p></p>
-      </div>
-      <div className='todo_container'>
-      <div className='todo_wrapper_text' style={{fontWeight:"bold"}}>{userData.user_name}님 일정</div>
-        <div className='todo_wrapper'>
-          <div className='appointment_list_wrapper' style={{fontSize:"15px"}}>
-            {view_appointment()}
-          </div>
-        </div>
-      </div>
-      <div style={{marginTop:"10px"}}> 
+      <div style={{marginTop:"5px"}}> 
       <div className='schedule_manager_wrapper'>
-        <div className='schedule_manager_text' style={{fontWeight:"bold"}}>일정 관리</div>
+        <div className='schedule_manager_text' style={{fontWeight:"bold"}}>{userData.user_name}님 일정 관리</div>
         <div className='date_wrapper'>
           <div className='date_text'>시간</div>
           <div className='date_text'>Mon</div>
@@ -261,10 +250,21 @@ function Profile({userData, onProjectCreated}) {
           <button className="save_schedule_button" onClick={saveScheduleHandler}>저장</button>
 
         </div>
+
+        <div className='todo_container' style={{marginTop:"15px"}}>
+          <div className='todo_wrapper_text' style={{fontWeight:"bold"}}>프로젝트 일정</div>
+            <div className='todo_wrapper'>
+              <div className='appointment_list_wrapper' style={{fontSize:"15px"}}>
+                {view_appointment()}
+              </div>
+            </div>
+          </div>
+        </div>
         
       </div>
     </div>
-    </div>
+
+
 
   );
 }
