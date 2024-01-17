@@ -122,7 +122,6 @@ function Register(){
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh',
         background: "white",
         overflow: 'hidden',
       };
@@ -132,7 +131,6 @@ function Register(){
         width: '100%',
         padding: '15px',
         textAlign: 'center',
-        marginTop: '-15px',
       };
     
       const lowerHalfStyle = {
@@ -146,24 +144,25 @@ function Register(){
       };
     
       const busboyStyle = {
-        fontSize: '35px',
+        fontSize: '55px',
         fontWeight: 'bold',
         color: 'white',
-        marginTop: '-20px',
-        padding: '15px'
+        marginTop: '20px',
+        padding: '10px'
       };
     
       const motoStyle = {
-        fontSize: '15px',
+        fontSize: '20px',
         color: 'white',
-        paddingTop: '20px',
+        paddingTop: '10px',
+        paddingBottom: '25px',
       };
     
     return (
         <div style={registerStyle}>
             <div style={upperHalfStyle}>
                 <div style={busboyStyle}>BUSBOY</div>
-                <div style={motoStyle}>"To allow you to focus on the core aspects, we take responsibility for less critical tasks"</div>
+                <div style={motoStyle}><em>"Start your group work faster than anyone else"</em></div>
             </div>
             <div style={lowerHalfStyle}>
             <div className='Register' style={{background: "white", borderRadius: '4px',marginTop: '5px',padding: '15px', border: '1px solid #000' }}>

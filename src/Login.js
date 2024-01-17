@@ -93,8 +93,8 @@ const Login = () => {
       <div style={upperHalfStyle}>
         {/* Upper half content */}
         <div style={titleStyle}>BUSBOY</div>
-        <div style={{ textAlign: 'center',color:'white' }}>
-          "To allow you to focus on the core aspects, we take responsibility for less critical tasks"
+        <div style={{ textAlign: 'center',color:'white', fontSize:'20px'}}>
+         <em>"Start your group work faster than anyone else"</em>
         </div>
         {/* ... */}
       </div>
