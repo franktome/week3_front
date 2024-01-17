@@ -77,15 +77,15 @@ const Projects = ({ userData, onProjectCreated }) => {
           <button style={{ borderRadius:'5px' ,border: '0px solid #fff',background: '#03C75A',color:'white',padding: '0.5em', fontSize: '1em',boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)' }} onClick={handleLogout}>로그아웃</button>
         </div>
       </div>
-      
+
+      <div style= {{margin:'auto', padding:'20px'}}>
       {userData.project && userData.project.length > 0 ? (
-        <ul style={{ margin: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', listStyleType: 'none', }}>
+        <ul style={{padding: 0, listStyleType: 'none', display:'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', listStyleType: 'none', }}>
           {userData.project.map((project, index) => (
-            <li key={index} style={{ borderRadius: '8px', backgroundImage: 'url("./memo.png")', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', background: '#03C75A',  position: 'relative', border: '1px solid #ddd', textAlign: 'center', cursor: 'pointer' }}>
+            <li key={index} style={{ marginTop: '15px', borderRadius: '8px', backgroundImage: 'url("./memo.png")', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', background: '#03C75A',  position: 'relative', border: '1px solid #ddd', textAlign: 'center', cursor: 'pointer' }}>
               <div style={{padding: '8px 8px', position: 'absolute', top: '5px', right: '5px', cursor: 'pointer', padding: '5px', background: '#03C75A', borderRadius: '0%',color:'white' }} onClick={() => handleDeleteProject(index)}>
               x
               </div>
-
               {/* 클릭 시 프로젝트 세부 정보 페이지로 이동 */}
               <div onClick={()=>handlepassusername(index)} style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div style={{ background: '#03C75A', padding: '8px', borderTopLeftRadius: '8px',borderTopRightRadius: '8px', marginBottom: '8px',marginTop: '-16px' }}>
@@ -103,6 +103,7 @@ const Projects = ({ userData, onProjectCreated }) => {
       ) : (
         <p>No project available.</p>
       )}
+    </div>
     </div>
   );
 };

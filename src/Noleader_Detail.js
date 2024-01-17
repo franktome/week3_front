@@ -158,7 +158,7 @@ const Noleader_Detail = ({userData, index}) => {
           style={{ background: '#fff', flex: '1', marginRight: '0px', padding: '8px',border: '1px solid #fff',fontWeight: 'bold', fontSize: '35px', }}
           disabled
         />
-        <button onClick={() => window.history.back()} style={{ marginLeft: '8px', padding: '8px', fontSize: '14px', cursor: 'pointer',  color: 'black', border: '0px solid #fff' }}>뒤로가기</button>
+        <button onClick={() => window.history.back()} style={{ borderRadius:'5px', marginLeft: '8px', padding: '8px', fontSize: '14px', cursor: 'pointer',  color: 'black', border: '0px solid #fff' }}>뒤로가기</button>
       </div>
       <hr className="divider" />
 
@@ -178,7 +178,7 @@ const Noleader_Detail = ({userData, index}) => {
       {/* Project Participation */}
       <div>
       <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>참여자들</p>
-        <ul>
+        <ul style ={{paddingLeft:'20px'}}>
           {projectParticipation.split(',').map((participant, index) => (
           <li key={index}>
               {participant.trim()} 
@@ -201,7 +201,7 @@ const Noleader_Detail = ({userData, index}) => {
       {/* To-do List */}
       <div>
         <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>To do list</p>
-        <ul>
+        <ul style ={{padding: 0, listStyleType: 'none'}}>
           {todos.map((todo, index) => (
             <li key={index} className="list-item">
               <input
@@ -273,7 +273,7 @@ const Noleader_Detail = ({userData, index}) => {
       {/* Appointments List */}
       <div>
         <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>약속잡기</p>
-        <ul>
+        <ul style ={{padding: 0, listStyleType: 'none'}}>
           {appointments.map((appointment, index) => (
             <li key={index} className="list-item">
               <input

@@ -154,7 +154,7 @@ const ProjectDetail = ({userData, index}) => {
       return null
     }else{
       return <div><button onClick={() => deleteParticipant(index)} style={{marginLeft: '8px',background: 'red',color: 'white',border: 'none',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '20%',}}>x</button>
-      <button onClick={() => change_leader(index)} style={{marginLeft: '8px',background: 'white',color: '',border: '1px solid #000',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '20%',}}>팀장</button>
+      <button onClick={() => change_leader(index)} style={{marginLeft: '8px',background: '#03C75A',color: 'white', border: '0px solid #000',cursor: 'pointer',padding: '4px 7px', fontSize: '15px',borderRadius: '5px',}}>팀장 위임</button>
       </div>
     }
   }
@@ -187,8 +187,8 @@ const ProjectDetail = ({userData, index}) => {
           className="project-input"
           style={{ background: '#fff', flex: '1', marginRight: '0px', padding: '8px',border: '1px solid #fff',fontWeight: 'bold', fontSize: '35px', }}
         />
-        <button onClick={handleSaveProjectDetail} style={{ padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#03C75A', color: '#fff', border: '0px solid #fff', marginLeft: '8px' }}>저장</button>
-        <button onClick={() => window.history.back()} style={{ marginLeft: '8px', padding: '8px', fontSize: '14px', cursor: 'pointer', color: 'black', border: '0px solid #fff' }}>뒤로가기</button>
+        <button onClick={handleSaveProjectDetail} style={{borderRadius:'5px', padding: '8px', fontSize: '14px', cursor: 'pointer', background: '#03C75A', color: '#fff', border: '0px solid #fff', marginLeft: '8px' }}>저장</button>
+        <button onClick={() => window.history.back()} style={{borderRadius:'5px', marginLeft: '8px', padding: '8px', fontSize: '14px', cursor: 'pointer', color: 'black', border: '0px solid #fff' }}>뒤로가기</button>
       </div>
       <hr className="divider" />
 
@@ -207,7 +207,7 @@ const ProjectDetail = ({userData, index}) => {
       {/* Project Participation */}
       <div>
       <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>참여자들</p>
-        <ul>
+        <ul style={{paddingLeft:'20px',}}>
           {projectParticipation.split(',').map((participant, index) => (
           <li key={index}>
               <div style={{ display: 'flex', listStyleType: 'none', }}>
@@ -232,7 +232,7 @@ const ProjectDetail = ({userData, index}) => {
       {/* To-do List */}
       <div>
         <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>To do list</p>
-        <ul>
+        <ul style={{padding: 0, listStyleType: 'none',}}>
           {todos.map((todo, index) => (
             <li key={index} style={{ listStyle: 'none', margin: '0', padding: '0' }} className="list-item">
               <input
@@ -305,7 +305,7 @@ const ProjectDetail = ({userData, index}) => {
       {/* Appointments List */}
       <div>
         <p className="label" style={{ textAlign: 'left', fontSize: '20px' }}>약속잡기</p>
-        <ul>
+        <ul style ={{padding: 0, listStyleType: 'none'}}>
           {appointments.map((appointment, index) => (
             <li key={index} style={{ listStyle: 'none', margin: '0', padding: '0' }} className="list-item">
 
