@@ -61,17 +61,29 @@ Project dashboard 화면
 
 
 ## 데이터베이스(MySQL)
-- users 테이블 (사용자 ID, 사용자 닉네임)
+- MySQL 테이블 관계도
+![데이터테이블 관계도](https://github.com/franktome/week3_front/assets/154505487/5287caeb-caf7-47b8-9f9b-c5fad7ee24ca)
 
-![users_table](https://github.com/franktome/madcamp_week2/assets/154505487/7ab191c0-6ca5-4035-ad42-96adcb8d0fde)
+- users 테이블
+  ![user_table](https://github.com/franktome/week3_front/assets/154505487/a1de6d4b-5aeb-428d-970d-a427cd338ec2)
 
--occupied_tablesA,B,C (사용자ID, 좌석 번호)
+- project 테이블
+  ![project_table](https://github.com/franktome/week3_front/assets/154505487/e1ee1e0e-52dd-401e-b65b-3e9ccc2912cb)
 
-![occupied_seatsA,B,C](https://github.com/franktome/madcamp_week2/assets/154505487/40d25aed-95e0-4253-a6b8-689fb446dd23)
+- project_belong 테이블
+  ![project_belong](https://github.com/franktome/week3_front/assets/154505487/5827ca93-6c61-44de-87a6-eb0c5cff0afe)
 
--occupied_users (사용자ID, 열람실 정보)
+- schedule 테이블
+  ![schedule_project](https://github.com/franktome/week3_front/assets/154505487/23c3439e-777a-41c0-9103-f9325d2179fe)
 
-![occupied_users_tables](https://github.com/franktome/madcamp_week2/assets/154505487/f790c761-79fb-4e89-98c4-5b68f59dd172)
+- todo 테이블
+  ![todo_table](https://github.com/franktome/week3_front/assets/154505487/c040c6e6-99e4-40af-8078-e70d04e87004)
+
+- appointment 테이블
+  ![appointment_table](https://github.com/franktome/week3_front/assets/154505487/96d45152-6eda-42e1-8c7c-74bfa2004f93)
+
+        
+
 
 
 
