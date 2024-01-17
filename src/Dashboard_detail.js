@@ -14,12 +14,12 @@ const Dashboard_detail = ({ route }) => {
   return (
     <div style={{ display: 'flex', height: '100vh',overflow: 'hidden' }}>
       {/* 프로젝트 목록 */}
-      <div style={{ flex: '3', padding: '20px', borderRight: '1px solid #ddd',overflow: 'auto' }}>
+      <div style={{ flex: '3', padding: '3vh', overflowY: 'auto' }}>
         <Project_detail userData ={userData} index  = {index}/>
       </div>
       
       {/* 프로필 영역 */}
-      <div style={{ flex: '1', padding: '20px', overflow: 'hidden', background:'#03C75A' }}>
+      <div style={{ flex: '1', padding: '3vh',  paddingTop:'1.5vh', overflow: 'hidden', background:'#03C75A' }}>
         <Profile userData = {userData} />
       </div>
     </div>

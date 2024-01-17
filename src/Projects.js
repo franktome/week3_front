@@ -68,7 +68,7 @@ const Projects = ({ userData, onProjectCreated }) => {
 
 
   return (
-    <div>
+    <div >
       <div style={{ background: 'white', padding: '8px', textAlign: 'center',border: 'px solid #888',borderRadius: '10px',marginBottom:"50px" }}>
         <h1 style={{ fontSize: '2em', marginBottom: '16px',textOrientation: 'mixed'}}>{userData.user_name}의 프로젝트</h1>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
@@ -79,7 +79,7 @@ const Projects = ({ userData, onProjectCreated }) => {
       </div>
       
       {userData.project && userData.project.length > 0 ? (
-        <ul style={{  display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', listStyleType: 'none', }}>
+        <ul style={{ margin: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', listStyleType: 'none', }}>
           {userData.project.map((project, index) => (
             <li key={index} style={{ borderRadius: '8px', backgroundImage: 'url("./memo.png")', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', background: '#03C75A',  position: 'relative', border: '1px solid #ddd', textAlign: 'center', cursor: 'pointer' }}>
               <div style={{padding: '8px 8px', position: 'absolute', top: '5px', right: '5px', cursor: 'pointer', padding: '5px', background: '#03C75A', borderRadius: '0%',color:'white' }} onClick={() => handleDeleteProject(index)}>

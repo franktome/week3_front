@@ -270,13 +270,13 @@ const ProjectDetail = ({userData, index}) => {
     
               <tr key={hour}>
                 <td style={{ fontSize: '12px', lineHeight: '0.5' }}>{`${hour}:00`}</td>
-                <td title={tooltipInfo?.[hour]?.[0].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[0]>0 ? 'green' : 'white')}}></td>
-                <td title={tooltipInfo?.[hour]?.[1].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[1]>0 ? 'green' : 'white')}}></td>
-                <td title={tooltipInfo?.[hour]?.[2].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[2]>0 ? 'green' : 'white')}}></td>
-                <td title={tooltipInfo?.[hour]?.[3].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[3]>0 ? 'green' : 'white')}}></td>
-                <td title={tooltipInfo?.[hour]?.[4].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[4]>0 ? 'green' : 'white')}}></td>
-                <td title={tooltipInfo?.[hour]?.[5].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[5]>0 ? 'green' : 'white')}}></td>
-                <td title={tooltipInfo?.[hour]?.[6].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[6]>0 ? 'green' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[0].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[0]>0 ? '#03C75A' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[1].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[1]>0 ? '#03C75A' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[2].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[2]>0 ? '#03C75A' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[3].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[3]>0 ? '#03C75A' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[4].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[4]>0 ? '#03C75A' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[5].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[5]>0 ? '#03C75A' : 'white')}}></td>
+                <td title={tooltipInfo?.[hour]?.[6].join(", ")} style={{ fontSize: '12px', lineHeight: '0.5' , backgroundColor: (tablestate?.[hour]?.[6]>0 ? '#03C75A' : 'white')}}></td>
               </tr>
             ))}
           </tbody>

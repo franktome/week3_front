@@ -63,23 +63,24 @@ function Profile({userData, onProjectCreated}) {
     const updatedblockList = [...blockList, new_block];
     setBlockList(updatedblockList);
   }
+  
+  const updateGridPosition = () => {
+    const rect = gridRef.current.getBoundingClientRect();
+    setGridPosition({
+      left: rect.left,
+      top: rect.top,
+      right: rect.right,
+      bottom: rect.bottom,
+      w: (rect.right - rect.left) / 8,
+      h: (rect.bottom - rect.top) / 24
+    });
+  };
 
   useEffect(() => {
 
     setProjectList(userData && userData.project ? userData.project : []);
     setBlockList(userData && userData.schedule ? userData.schedule : []);
 
-    const updateGridPosition = () => {
-      const rect = gridRef.current.getBoundingClientRect();
-      setGridPosition({
-        left: rect.left,
-        top: rect.top,
-        right: rect.right,
-        bottom: rect.bottom,
-        w: (rect.right - rect.left) / 8,
-        h: (rect.bottom - rect.top) / 24
-      });
-    };
     updateGridPosition();
     // 윈도우 리사이즈 등에 대응하여 그리드 위치를 업데이트하는 이벤트 리스너 등록
     window.addEventListener('resize', updateGridPosition);
@@ -228,7 +229,7 @@ function Profile({userData, onProjectCreated}) {
           </div>
         </div>
       </div>
-      <div style={{marginTop:"-20px"}}> 
+      <div style={{marginTop:"10px"}}> 
       <div className='schedule_manager_wrapper'>
         <div className='schedule_manager_text' style={{fontWeight:"bold"}}>일정 관리</div>
         <div className='date_wrapper'>
