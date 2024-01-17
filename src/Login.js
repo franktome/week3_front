@@ -126,6 +126,7 @@ const Login = () => {
         </div>
       </div>
       </div>
+      <div style={{textAlign:'right', marginRight:'10px', fontSize:'15px'}}>Made by qkrwhdah03@kaist.ac.kr & yunhs139@dgist.ac.kr</div>
     </div>
   );
 };
