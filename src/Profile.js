@@ -221,15 +221,16 @@ function Profile({userData, onProjectCreated}) {
         <p></p>
       </div>
       <div className='todo_container'>
-      <div className='todo_wrapper_text'>{userData.user_name}님 프로젝트 일정</div>
+      <div className='todo_wrapper_text' style={{fontWeight:"bold"}}>{userData.user_name}님 일정</div>
         <div className='todo_wrapper'>
-          <div className='appointment_list_wrapper'>
+          <div className='appointment_list_wrapper' style={{fontSize:"15px"}}>
             {view_appointment()}
           </div>
         </div>
       </div>
+      <div style={{marginTop:"-20px"}}> 
       <div className='schedule_manager_wrapper'>
-        <div className='schedule_manager_text'>일정 관리</div>
+        <div className='schedule_manager_text' style={{fontWeight:"bold"}}>일정 관리</div>
         <div className='date_wrapper'>
           <div className='date_text'>시간</div>
           <div className='date_text'>Mon</div>
@@ -250,15 +251,18 @@ function Profile({userData, onProjectCreated}) {
         
         </div>
       </div>
-      <div className="trash" onDrop={drop} onDragOver={dragOverTrash} onDragLeave={dragLeaveTrash}>
+
+      <div className="trash"  onDrop={drop} onDragOver={dragOverTrash} onDragLeave={dragLeaveTrash}>
         <div className="create_box_input" >
           <input type='text' className='plan_name' onChange={(e)=> setPlanName(e.target.value.slice(0,5))} value = {planname}></input>
           <input type='number' className='plan_len' onChange={(e)=> limitPlanTime(e)} value = {plantime}></input>
           <button type="button" className='addblock' onClick={createBlock}>+</button>
-        </div>
-        <button className="save_schedule_button" onClick={saveScheduleHandler}>저장</button>
+          <button className="save_schedule_button" onClick={saveScheduleHandler}>저장</button>
 
+        </div>
+        
       </div>
+    </div>
     </div>
 
   );

@@ -19,7 +19,7 @@ const Dashboard_detail = ({ route }) => {
       </div>
       
       {/* 프로필 영역 */}
-      <div style={{ flex: '1', padding: '20px', overflow: 'hidden' }}>
+      <div style={{ flex: '1', padding: '20px', overflow: 'hidden', background:'#03C75A' }}>
         <Profile userData = {userData} />
       </div>
     </div>

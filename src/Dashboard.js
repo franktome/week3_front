@@ -34,14 +34,14 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', height: '100vh',overflow: 'hidden', background:'#535353' }}>
+    <div style={{ display: 'flex', height: '100vh',overflow: 'hidden', background:'#fff' }}>
       {/* 프로젝트 목록 */}
       <div style={{ flex: '3', padding: '3vh', overflowY: 'auto' }}>
         <Projects userData ={userData} onProjectCreated = {onProjectCreated}/>
       </div>
       
       {/* 프로필 영역 */}
-      <div style={{ flex: '1', padding: '3vh',  paddingTop:'1.5vh', overflow: 'hidden', background:'#FFC300' }}>
+      <div style={{ flex: '1', padding: '3vh',  paddingTop:'1.5vh', overflow: 'hidden', background:'#03C75A' }}>
         <Profile userData = {userData} callback={onProjectCreated} />
       </div>
     </div>

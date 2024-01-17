@@ -1,7 +1,7 @@
 .profile_wrapper {
     max-width: 100%;
     max-height: 100%;
-    background-color: #FFC300;
+    background-color: #03C75A;
     padding-bottom: 10px;
     border-radius: 10px;
 }
@@ -25,7 +25,7 @@ p {
     gap: 0px;
     position: relative;
     padding: auto;
-    background-color: #535353;
+    background-color: #03C75A ;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
@@ -50,6 +50,7 @@ p {
 .schedule_manager_text{
     margin-top: 5px;
     margin-bottom: 5px;
+    color : #FFF;
 }
 
 .schedule_wrapper {
@@ -66,16 +67,16 @@ p {
 .grid_hour {
     color: #000;
     font-size: 0.7vw;
-    border: 1px solid #DCD5C3;
-    background-color: #F0F0DB;
+    border: 1px solid #D9D9D9;
+    background-color: #FFFFFF;
     text-align: center;
 }
 
 .grid_item {
-    background-color: #F0F0DB;
+    background-color: #FFFFFF;
     width: auto;
     height: auto;
-    border: 1px solid #DCD5C3;
+    border: 1px solid #D9D9D9;
     
 }
 
@@ -83,15 +84,15 @@ p {
     display: flex;
     align-items: center; /* 세로로 중앙 정렬을 위한 속성 추가 */
     justify-content: center; /* 가로로 중앙 정렬을 위한 속성 추가 */
-    background-color: rgba(255, 195, 0, 0.5); 
-    border: 1px solid #FFC300;
+    background-color: rgba(3, 199, 90, 0.5); 
+    border: 1px solid #03C75A;
     font-size: 0.9vw;
     text-align: center;
 }
 
 .rectangle:hover {
-    background-color: rgba(59, 47, 11, 0.5); 
-    border: 1px solid #FFC300;
+    background-color: rgba(0, 105, 47, 0.5); 
+    border: 1px solid #03C75A;
 }
 
 
@@ -116,7 +117,7 @@ p {
     padding: 4px;
     font-size: 12px;
     border: 2px solid #D9D9D9;
-    background-color: #F0F0DB;
+    background-color: #FFFFFF;
     border-radius: 4px;
 }
 
@@ -126,7 +127,7 @@ p {
     padding: 4px;
     font-size: 12px;
     border: 2px solid #D9D9D9;
-    background-color: #F0F0DB;
+    background-color: #FFFFFF;
     border-radius: 4px;
 }
 
@@ -136,7 +137,7 @@ p {
     flex: 0;
     padding: 6px;
     font-size: 14px;
-    background-color: #F0F0DB;
+    background-color: #FFFFFF;
     color: black;
     border: none;
     border-radius: 4px;
@@ -144,24 +145,24 @@ p {
 }
 
 .addblock:hover {
-    background-color: #7c620e;
+    background-color: #00692E;
 }
 
 
 /* 저장 버튼 스타일링 */
 .save_schedule_button {
-    margin-top: 10px;
     width: 40px;
     height: 30px;
-    background-color: #FFC300; /* 저장 버튼 배경색 */
-    color : #FFFFFF;
+    background-color: #FFFFFF; /* 저장 버튼 배경색 */
+    color : #000;
     border: none;
     border-radius: 4px;
 }
 
 /* 저장 버튼에 호버 효과 추가 */
 .save_schedule_button:hover {
-    background-color: #7c620e;
+    background-color: #00692E;
+    color: #FFF;
 }
 
 .todo_container {
@@ -185,13 +186,14 @@ p {
 }
 
 .todo_wrapper_text{
-    color : #000;
+    color : #FFF;
+    font-Weight: 'bold';
 }
 
 .appointment_view{
     color: #000;
     padding: 8px;
-    background-color: #F0F0DB;
+    background-color: #FFFFFF;
     margin-bottom: 3px;
     border-radius: 5px;
     flex: 1; /* 나머지 공간을 채우도록 설정 */
@@ -208,5 +210,5 @@ p {
 }
 
 .appointment_list_wrapper::-webkit-scrollbar-thumb {
-    background-color: #535353; /* 스크롤 바 색상 설정 */
+    background-color: #FFFFFF; /* 스크롤 바 색상 설정 */
 }
