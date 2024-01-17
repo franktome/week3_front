@@ -41,7 +41,7 @@ Project dashboard 화면
 ![dash_detail 화면](https://github.com/franktome/week3_front/assets/154505487/52fa9c3d-34e1-47e7-9556-49e9c76e6cf2)
 ![dash_detail화면2](https://github.com/franktome/week3_front/assets/154505487/39c046f6-1192-45b0-932c-e70059c4022a)
 
-- 팀장 위임하고 다시 프로젝트 세부페이지로 넘아가면 수정할 수 없는 창이 뜬다.
+- 팀장 권한을 위임하고 다시 프로젝트 세부페이지로 넘아가면 수정할 수 없는 창이 뜹니다.
 ![noleader_detail](https://github.com/franktome/week3_front/assets/154505487/b122751b-234b-43b8-9131-03b277e70925)
 ![noleader_detail2](https://github.com/franktome/week3_front/assets/154505487/80bfb305-d8aa-4772-998b-40de5b1d9fe7)
 
